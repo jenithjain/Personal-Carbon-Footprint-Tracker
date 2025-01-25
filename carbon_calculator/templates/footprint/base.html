@@ -207,6 +207,57 @@
             background: #2ecc71;
             color: #000 !important;
         }
+
+        .navbar {
+            background-color: rgba(51, 51, 51, 0);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease-in-out;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .navbar.hidden {
+            transform: translateY(-100%);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .nav-brand {
+            color: #2ecc71;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-links a:hover {
+            color: #2ecc71;
+        }
     </style>
 </head>
 <body>
@@ -262,12 +313,17 @@
 
     /* Simple Navbar */
     .navbar {
-        background: rgba(0, 10, 0, 0.95);
-        border-bottom: 1px solid rgba(46, 204, 113, 0.2);
+        background-color: rgba(51, 51, 51, 0);
+        backdrop-filter: blur(8px);
         position: fixed;
         width: 100%;
         top: 0;
         z-index: 1000;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .navbar.hidden {
+        transform: translateY(-100%);
     }
 
     .nav-container {
@@ -284,6 +340,7 @@
         text-decoration: none;
         font-size: 1.2rem;
         font-weight: bold;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     }
 
     .nav-links {
@@ -321,5 +378,23 @@
         }
     }
     </style>
+
+    <script>
+    let lastScrollY = window.scrollY;
+
+    window.addEventListener("scroll", () => {
+        const navbar = document.querySelector(".navbar");
+        
+        if (lastScrollY < window.scrollY) {
+            // Scrolling down
+            navbar.classList.add("hidden");
+        } else {
+            // Scrolling up
+            navbar.classList.remove("hidden");
+        }
+        
+        lastScrollY = window.scrollY;
+    });
+    </script>
 </body>
 </html> 

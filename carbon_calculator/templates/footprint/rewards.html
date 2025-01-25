@@ -32,7 +32,7 @@
         <!-- Eco Product Card -->
         <div class="reward-card">
             <div class="reward-image">
-                <img src="{% static 'images/bamboo-utensils.jpg' %}" alt="Bamboo Utensil Set">
+                <img src="{% static 'images/bamboo.png' %}" alt="Bamboo Utensil Set">
                 <div class="points-tag">500 points</div>
             </div>
             <div class="reward-info">
@@ -45,7 +45,7 @@
         <!-- Plant Trees Card -->
         <div class="reward-card">
             <div class="reward-image">
-                <img src="{% static 'images/plant-trees.jpg' %}" alt="Plant Trees">
+                <img src="{% static 'images/plant-tree.png' %}" alt="Plant Trees">
                 <div class="points-tag">300 points</div>
             </div>
             <div class="reward-info">
@@ -71,7 +71,7 @@
         <!-- Solar Charger Card -->
         <div class="reward-card">
             <div class="reward-image">
-                <img src="{% static 'images/solar-charger.jpg' %}" alt="Solar Charger">
+                <img src="{% static 'images/solar-charger.jpeg' %}" alt="Solar Charger">
                 <div class="points-tag">1000 points</div>
             </div>
             <div class="reward-info">
@@ -85,7 +85,7 @@
 
 <style>
 .rewards-container {
-    max-width: 1400px;  /* Increased max-width */
+    max-width: 1200px;
     margin: 2rem auto;
     padding: 0 2rem;
 }
@@ -156,38 +156,41 @@
 
 .rewards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));  /* Increased minimum width */
-    gap: 2.5rem;  /* Increased gap */
-    padding: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
 }
 
 .reward-card {
     background: rgba(0, 15, 2, 0.85);
-    border-radius: 20px;  /* Increased border radius */
+    border-radius: 12px;
     overflow: hidden;
     border: 1px solid rgba(46, 204, 113, 0.2);
-    transition: all 0.3s ease;
-    height: 100%;  /* Ensure consistent height */
-    display: flex;
-    flex-direction: column;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
 .reward-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(46, 204, 113, 0.2);
+    box-shadow: 0 6px 20px rgba(46, 204, 113, 0.15);
 }
 
 .reward-image {
     position: relative;
-    height: 250px;  /* Increased height */
+    width: 100%;
+    height: 200px;  /* Fixed height */
+    background: rgba(255, 255, 255, 0.05);  /* Light background for images */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
 }
 
 .reward-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 80%;  /* Reduced to 80% of container width */
+    height: 80%;  /* Reduced to 80% of container height */
+    object-fit: contain;  /* Changed to contain to prevent distortion */
+    padding: 1rem;
     transition: transform 0.3s ease;
 }
 
@@ -200,46 +203,42 @@
     top: 1rem;
     right: 1rem;
     background: rgba(46, 204, 113, 0.9);
-    padding: 0.8rem 1.5rem;
-    border-radius: 25px;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    color: white;
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .reward-info {
-    padding: 2rem;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    padding: 1.5rem;
+    text-align: center;
 }
 
 .reward-info h3 {
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
     color: #2ecc71;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
 }
 
 .reward-info p {
-    color: #888;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
     margin-bottom: 1.5rem;
-    font-size: 1rem;
-    line-height: 1.6;
+    line-height: 1.5;
 }
 
 .redeem-btn {
     width: 100%;
-    padding: 1rem;
+    padding: 0.8rem;
     background: #2ecc71;
     border: none;
-    border-radius: 12px;
+    border-radius: 8px;
     color: white;
     font-weight: bold;
-    font-size: 1.1rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-top: auto;  /* Push button to bottom */
 }
 
 .redeem-btn:hover {
@@ -248,31 +247,14 @@
     box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
 }
 
-@media (max-width: 1200px) {
-    .rewards-grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    }
-}
-
 @media (max-width: 768px) {
     .rewards-grid {
         grid-template-columns: 1fr;
-        padding: 0.5rem;
+        gap: 1.5rem;
     }
     
-    .categories {
-        flex-wrap: nowrap;
-        justify-content: start;
-        padding-bottom: 1rem;
-    }
-
-    .points-banner {
-        padding: 1.5rem;
-        margin-bottom: 2rem;
-    }
-
-    .reward-card {
-        margin-bottom: 1rem;
+    .reward-image {
+        height: 180px;
     }
 }
 </style>
