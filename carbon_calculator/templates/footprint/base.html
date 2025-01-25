@@ -1,0 +1,323 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Spectral:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-bg: #1a1a1a;
+            --grey-bg: #333333;
+            --green-accent: #4CAF50;
+            --light-text: #ffffff;
+            --green-gradient: linear-gradient(135deg, #4CAF50, #45a049);
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .card {
+            background-color: var(--grey-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            background-color: var(--green-accent);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .nav {
+            background-color: rgba(51, 51, 51, 0.8);
+            backdrop-filter: blur(8px);
+            padding: 1rem;
+            margin-bottom: 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .nav-brand {
+            color: var(--green-accent);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .nav a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .nav a:hover {
+            color: var(--green-accent);
+        }
+        
+        input[type="number"], input[type="text"], input[type="password"] {
+            background-color: var(--grey-bg);
+            border: 1px solid var(--green-accent);
+            color: white;
+            padding: 8px;
+            border-radius: 4px;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--grey-bg);
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--green-accent);
+        }
+        
+        .hero-text {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn-large {
+            font-size: 1.2rem;
+            padding: 15px 30px;
+            background: var(--green-gradient);
+            transition: transform 0.2s;
+        }
+        
+        .btn-large:hover {
+            transform: translateY(-2px);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .feature-card {
+            background: var(--grey-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .feature-card h3 {
+            color: var(--green-accent);
+            margin-bottom: 1rem;
+        }
+        
+        .info-section {
+            background: var(--grey-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        
+        .info-section h2 {
+            color: var(--green-accent);
+            margin-bottom: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+
+        .eco-chat-link {
+            color: #2ecc71 !important;
+            font-weight: 500;
+            padding: 8px 15px;
+            border: 1px solid #2ecc71;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .eco-chat-link:hover {
+            background: #2ecc71;
+            color: #000 !important;
+        }
+
+        .chatbot-link {
+            color: #2ecc71 !important;
+            font-weight: 500;
+            padding: 8px 15px;
+            border: 1px solid #2ecc71;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+        }
+
+        .chatbot-link:hover {
+            background: #2ecc71;
+            color: #000 !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{% url 'footprint:landing' %}" class="nav-brand">
+                <span>🌍 Carbon Calculator</span>
+            </a>
+            <div class="nav-links">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'footprint:dashboard' %}">Dashboard</a>
+                    <a href="{% url 'footprint:input' %}">Calculate</a>
+                    <a href="{% url 'footprint:rewards' %}">Rewards</a>
+                    <a href="{% url 'footprint:events' %}">Events</a>
+                    <a href="{% url 'footprint:logout' %}">Logout</a>
+                {% else %}
+                    <a href="#features">Features</a>
+                    <a href="#testimonials">Testimonials</a>
+                    <a href="#contact">Contact</a>
+                    <a href="{% url 'footprint:login' %}" class="nav-cta">Sign In</a>
+                {% endif %}
+                <a href="https://nakshjainsonigara-cv-streamlit-scanner-gmzbw4.streamlit.app/" 
+                   target="_blank" 
+                   class="chatbot-link">
+                    <span>AI Scanner</span>
+                </a>
+                <a href="https://ecobotc.streamlit.app/" 
+                   target="_blank" 
+                   class="eco-chat-link">
+                    <span>Eco Chat</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="content-wrapper">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <style>
+    /* Essential Styles */
+    body {
+        margin: 0;
+        padding: 0;
+        background: #000;
+        color: #fff;
+        font-family: Helvetica, Arial, sans-serif;
+    }
+
+    /* Simple Navbar */
+    .navbar {
+        background: rgba(0, 10, 0, 0.95);
+        border-bottom: 1px solid rgba(46, 204, 113, 0.2);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .nav-brand {
+        color: #2ecc71;
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+    }
+
+    .nav-links a {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+        color: #2ecc71;
+    }
+
+    /* Content Spacing */
+    .content-wrapper {
+        padding-top: 80px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .nav-container {
+            padding: 1rem;
+        }
+
+        .nav-links {
+            gap: 1rem;
+        }
+    }
+    </style>
+</body>
+</html> 

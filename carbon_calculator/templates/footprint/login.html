@@ -1,0 +1,241 @@
+{% extends 'footprint/base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTrack - Login</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <canvas id="globeCanvas"></canvas>
+    
+    <div class="auth-container">
+        <div class="auth-box">
+            <h2 class="auth-title">Login</h2>
+            
+            <form class="auth-form" method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="auth-button">Login</button>
+            </form>
+
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <div class="message {{ message.tags }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <div class="auth-footer">
+                Don't have an account? <a href="{% url 'signup' %}" class="auth-link">Sign Up</a>
+            </div>
+        </div>
+    </div>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    overflow: hidden; /* Changed from overflow-x to prevent all scrolling */
+    background: #000;
+    color: white;
+    height: 100vh; /* Ensure body takes full viewport height */
+}
+
+#globeCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* Remove all navbar styles */
+.navbar {
+    display: none;
+}
+
+.auth-container {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.auth-box {
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 2.5rem;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid rgba(46, 204, 113, 0.3);
+    box-shadow: 0 0 20px rgba(46, 204, 113, 0.2);
+}
+
+.auth-title {
+    text-align: center;
+    color: #2ecc71;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.auth-form p {
+    margin-bottom: 1rem;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(46, 204, 113, 0.3);
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+}
+
+.auth-form input:focus {
+    outline: none;
+    border-color: #2ecc71;
+    box-shadow: 0 0 10px rgba(46, 204, 113, 0.3);
+}
+
+.auth-button {
+    padding: 1rem;
+    background: linear-gradient(45deg, #2ecc71, #27ae60);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.auth-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+}
+
+.auth-footer {
+    margin-top: 2rem;
+    text-align: center;
+    color: #888;
+}
+
+.auth-link {
+    color: #2ecc71;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.auth-link:hover {
+    color: #27ae60;
+    text-decoration: underline;
+}
+
+.messages {
+    margin-bottom: 1rem;
+}
+
+.message {
+    padding: 0.8rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.message.error {
+    background: rgba(231, 76, 60, 0.2);
+    border: 1px solid rgba(231, 76, 60, 0.3);
+    color: #e74c3c;
+}
+
+.message.success {
+    background: rgba(46, 204, 113, 0.2);
+    border: 1px solid rgba(46, 204, 113, 0.3);
+    color: #2ecc71;
+}
+</style>
+
+<script>
+// Update globe animation to remove scroll-based rotation
+let scene, camera, renderer, globe;
+let currentRotation = { x: 0, y: 0 };
+
+function init() {
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    renderer = new THREE.WebGLRenderer({
+        canvas: document.getElementById('globeCanvas'),
+        antialias: true,
+        alpha: true
+    });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+
+    const geometry = new THREE.SphereGeometry(2, 64, 64);
+    const texture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/planets/earth_atmos_2048.jpg');
+    
+    const material = new THREE.MeshPhongMaterial({
+        map: texture,
+        shininess: 5
+    });
+    
+    globe = new THREE.Mesh(geometry, material);
+    scene.add(globe);
+
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambientLight);
+    
+    const pointLight = new THREE.PointLight(0xffffff, 1.0);
+    pointLight.position.set(5, 3, 5);
+    scene.add(pointLight);
+
+    camera.position.z = 7;
+
+    window.addEventListener('resize', onWindowResize, false);
+
+    animate();
+}
+
+function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+function animate() {
+    requestAnimationFrame(animate);
+
+    // Simple constant rotation
+    globe.rotation.y += 0.005;
+
+    renderer.render(scene, camera);
+}
+
+init();
+</script>
+</body>
+</html>
+{% endblock %} 

@@ -1,0 +1,723 @@
+{% extends 'footprint/base.html' %}
+
+{% block content %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Spectral:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Minimal Background -->
+
+
+<div class="dashboard-container">
+    <!-- Quick Stats Row -->
+    <div class="quick-stats-container" data-aos="fade-up">
+        <div class="quick-stat">
+            <div class="stat-icon">👥</div>
+            <div class="stat-value counter">15,742</div>
+            <div class="stat-label">Active Users</div>
+        </div>
+        <div class="quick-stat">
+            <div class="stat-icon">🌍</div>
+            <div class="stat-value counter">245</div>
+            <div class="stat-label">Trees Planted</div>
+        </div>
+        <div class="quick-stat">
+            <div class="stat-icon">⚡</div>
+            <div class="stat-value counter">13,050</div>
+            <div class="stat-label">kg CO₂ Total</div>
+        </div>
+        <div class="quick-stat">
+            <div class="stat-icon">📊</div>
+            <div class="stat-value counter">-25%</div>
+            <div class="stat-label">Monthly Reduction</div>
+        </div>
+    </div>
+
+    <!-- Main Charts Grid -->
+    <div class="charts-grid">
+        <!-- Emissions Trend -->
+        <div class="chart-card" data-aos="fade-right">
+            <h3>Monthly Emissions & Offset</h3>
+            <canvas id="emissionsChart"></canvas>
+        </div>
+
+        <!-- Goals Progress -->
+        <div class="chart-card goals" data-aos="fade-left">
+            <h3>Goals Progress</h3>
+            <div class="goals-container">
+                <div class="goal-item">
+                    <div class="goal-header">
+                        <span><i class="goal-icon">🚗</i>Reduce Car Usage</span>
+                        <span class="percentage">75%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%"></div>
+                    </div>
+                    <div class="goal-details">
+                        <span>Current: 25km/week</span>
+                        <span class="goal-target">Target: 10km/week</span>
+                    </div>
+                </div>
+                
+                <div class="goal-item">
+                    <div class="goal-header">
+                        <span><i class="goal-icon">🌳</i>Plant Trees</span>
+                        <span class="percentage">40%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 40%"></div>
+                    </div>
+                    <div class="goal-details">
+                        <span>Planted: 4 trees</span>
+                        <span class="goal-target">Target: 10 trees</span>
+                    </div>
+                </div>
+                
+                <div class="goal-item">
+                    <div class="goal-header">
+                        <span><i class="goal-icon">⚡</i>Energy Savings</span>
+                        <span class="percentage">90%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 90%"></div>
+                    </div>
+                    <div class="goal-details">
+                        <span>Saved: 450 kWh</span>
+                        <span class="goal-target">Target: 500 kWh</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Predictions Section -->
+    <div class="predictions-section" data-aos="fade-up">
+        <h3>Next Month Predictions</h3>
+        <div class="predictions-grid">
+            <div class="prediction-card">
+                <div class="prediction-icon">🚗</div>
+                <h4>Travel & Transport</h4>
+                <div class="prediction-value">~550 km</div>
+                <p>Based on your travel patterns, expect slightly increased travel distance</p>
+                <div class="prediction-tip">💡 Consider carpooling to reduce emissions</div>
+            </div>
+
+            <div class="prediction-card">
+                <div class="prediction-icon">⚡</div>
+                <h4>Energy Usage</h4>
+                <div class="prediction-value">~320 kWh</div>
+                <p>Expected energy consumption based on seasonal trends</p>
+                <div class="prediction-tip">💡 Peak usage hours: 6-8 PM</div>
+            </div>
+
+            <div class="prediction-card">
+                <div class="prediction-icon">💨</div>
+                <h4>Expected Emissions</h4>
+                <div class="prediction-value">~1,100 kg CO₂</div>
+                <p>Projected based on current habits and seasonal factors</p>
+                <div class="prediction-tip">💡 Potential 20% reduction with suggested changes</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Achievement Cards -->
+    <div class="achievements-section" data-aos="fade-up">
+        <h3>Your Achievements</h3>
+        <div class="achievements-grid">
+            <div class="achievement-card">
+                <div class="achievement-icon">🌟</div>
+                <h4>Carbon Champion</h4>
+                <p>Reduced emissions by 30%</p>
+            </div>
+            <div class="achievement-card">
+                <div class="achievement-icon">🚲</div>
+                <h4>Green Commuter</h4>
+                <p>50 bike rides logged</p>
+            </div>
+            <div class="achievement-card">
+                <div class="achievement-icon">🌱</div>
+                <h4>Tree Planter</h4>
+                <p>10 trees contributed</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+:root {
+    --main-font: Helvetica, "Helvetica Neue", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+    --card-bg: rgba(0, 15, 2, 0.85);
+    --card-border: rgba(46, 204, 113, 0.2);
+    --card-glow: rgba(46, 204, 113, 0.15);
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --accent-green: #2ecc71;
+}
+
+/* Enhanced Green Gradient Background */
+.animated-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(135deg,
+        #000000 0%,
+        #002507 25%,
+        #003b0c 50%,
+        #002507 75%,
+        #000000 100%
+    );
+}
+
+/* Card Background Style */
+.quick-stat, .chart-card, .achievement-card, .feature-card, .form-card, .notification-card {
+    background: linear-gradient(165deg, 
+        rgba(0, 15, 3, 0.95) 0%,
+        rgba(0, 8, 0, 0.98) 100%
+    );
+    border: 1px solid rgba(46, 204, 113, 0.2);
+    border-radius: 24px;
+    padding: 1.8rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 4px 24px -1px rgba(0, 0, 0, 0.2),
+        0 0 16px rgba(46, 204, 113, 0.1);
+    transition: all 0.3s ease;
+}
+.scanner-container{
+    margin: 50px;
+}
+/* Glowing Border Effect */
+.quick-stat:hover, .chart-card:hover, .achievement-card:hover, 
+.feature-card:hover, .form-card:hover, .notification-card:hover {
+    border-color: rgba(46, 204, 113, 0.4);
+    box-shadow: 
+        0 8px 32px -1px rgba(0, 0, 0, 0.3),
+        0 0 24px rgba(46, 204, 113, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Glowing Elements */
+.stat-value {
+    color: #2ecc71;
+    text-shadow: 0 0 15px rgba(46, 204, 113, 0.4);
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+.stat-label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Input and Button Styles */
+.form-control, button {
+    background: rgba(0, 20, 0, 0.6);
+    border: 1px solid rgba(46, 204, 113, 0.3);
+    border-radius: 12px;
+    color: var(--text-primary);
+    padding: 0.8rem 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus, button:hover {
+    border-color: rgba(46, 204, 113, 0.6);
+    box-shadow: 0 0 15px rgba(46, 204, 113, 0.2);
+}
+
+/* Progress Bar Enhancement */
+.progress-bar {
+    background: rgba(46, 204, 113, 0.1);
+    border: 1px solid rgba(46, 204, 113, 0.3);
+    height: 10px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.progress {
+    background: linear-gradient(90deg, 
+        rgba(46, 204, 113, 0.8),
+        rgba(46, 204, 113, 1)
+    );
+    height: 100%;
+    border-radius: 6px;
+    box-shadow: 0 0 15px rgba(46, 204, 113, 0.3);
+}
+
+/* Chart Container Enhancement */
+canvas {
+    background: rgba(0, 20, 0, 0.3);
+    border-radius: 16px;
+    padding: 1rem;
+    border: 1px solid rgba(46, 204, 113, 0.2);
+}
+
+/* Maintain Helvetica Typography */
+body, h1, h2, h3, h4, h5, h6, p, span, div {
+    font-family: var(--main-font);
+}
+
+.chart-card h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #2ecc71;
+    text-shadow: 0 0 10px rgba(46, 204, 113, 0.3);
+}
+
+/* Grid Layout */
+.quick-stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Glowing Icons */
+.stat-icon {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 8px rgba(46, 204, 113, 0.3));
+}
+
+@media (max-width: 768px) {
+    .quick-stats-container {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+    
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Achievement Cards Grid Layout */
+.achievements-section {
+    margin-top: 2rem;
+}
+
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.achievement-card {
+    height: 100%; /* Ensure same height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+.achievement-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 8px rgba(46, 204, 113, 0.3));
+}
+
+.achievement-card h4 {
+    margin: 0.8rem 0;
+    font-size: 1.2rem;
+    color: #2ecc71;
+}
+
+.achievement-card p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .achievements-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+/* Enhanced Goals Progress Styles */
+.goals-container {
+    padding: 1rem 0;
+}
+
+.goal-item {
+    margin-bottom: 1.8rem;
+    position: relative;
+}
+
+.goal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+}
+
+.goal-header span {
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.goal-header .percentage {
+    color: #2ecc71;
+    font-weight: 600;
+}
+
+.progress-bar {
+    background: rgba(46, 204, 113, 0.1);
+    border: 1px solid rgba(46, 204, 113, 0.2);
+    height: 8px;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress {
+    background: linear-gradient(90deg, 
+        rgba(46, 204, 113, 0.8),
+        #2ecc71
+    );
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.5s ease;
+    position: relative;
+    box-shadow: 0 0 10px rgba(46, 204, 113, 0.3);
+}
+
+/* Progress Indicator Dot */
+.progress::after {
+    content: '';
+    position: absolute;
+    right: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(46, 204, 113, 0.5);
+}
+
+/* Goal Icon */
+.goal-icon {
+    display: inline-block;
+    margin-right: 8px;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Goal Details */
+.goal-details {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.goal-target {
+    color: rgba(46, 204, 113, 0.8);
+}
+
+/* Goal Card Enhancement */
+.chart-card.goals {
+    background: linear-gradient(165deg, 
+        rgba(0, 15, 3, 0.95) 0%,
+        rgba(0, 8, 0, 0.98) 100%
+    );
+}
+
+.chart-card.goals h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.chart-card.goals h3::before {
+    content: '🎯';
+    font-size: 1.4rem;
+}
+
+/* Hover Effect */
+.goal-item:hover .progress-bar {
+    border-color: rgba(46, 204, 113, 0.4);
+}
+
+.goal-item:hover .progress {
+    box-shadow: 0 0 15px rgba(46, 204, 113, 0.4);
+}
+
+/* Scanner Section Styles */
+.scanner-section {
+    margin-top: 2rem;
+    padding: 1rem;
+}
+
+.scanner-container {
+    background: linear-gradient(165deg, 
+        rgba(0, 15, 3, 0.95) 0%,
+        rgba(0, 8, 0, 0.98) 100%
+    );
+    border: 1px solid rgba(46, 204, 113, 0.2);
+    border-radius: 24px;
+    padding: 1.8rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 4px 24px -1px rgba(0, 0, 0, 0.2),
+        0 0 16px rgba(46, 204, 113, 0.1);
+}
+
+.scanner-frame {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid rgba(46, 204, 113, 0.3);
+    background: rgba(0, 10, 0, 0.5);
+}
+
+.scanner-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+/* Hover Effects */
+.scanner-container:hover {
+    border-color: rgba(46, 204, 113, 0.4);
+    box-shadow: 
+        0 8px 32px -1px rgba(0, 0, 0, 0.3),
+        0 0 24px rgba(46, 204, 113, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .scanner-frame {
+        height: 400px;
+    }
+}
+
+/* Add these new styles */
+.predictions-section {
+    margin: 2rem 0;
+    padding: 1rem;
+}
+
+.predictions-section h3 {
+    color: #2ecc71;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    text-shadow: 0 0 10px rgba(46, 204, 113, 0.3);
+}
+
+.predictions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.prediction-card {
+    background: linear-gradient(165deg, 
+        rgba(0, 15, 3, 0.95) 0%,
+        rgba(0, 8, 0, 0.98) 100%
+    );
+    border: 1px solid rgba(46, 204, 113, 0.2);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.prediction-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 32px -1px rgba(0, 0, 0, 0.3),
+                0 0 24px rgba(46, 204, 113, 0.2);
+}
+
+.prediction-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 8px rgba(46, 204, 113, 0.3));
+}
+
+.prediction-value {
+    font-size: 1.8rem;
+    color: #2ecc71;
+    margin: 1rem 0;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(46, 204, 113, 0.3);
+}
+
+.prediction-tip {
+    margin-top: 1rem;
+    padding: 0.8rem;
+    background: rgba(46, 204, 113, 0.1);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #2ecc71;
+}
+
+@media (max-width: 768px) {
+    .predictions-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .prediction-card {
+        margin-bottom: 1rem;
+    }
+}
+</style>
+
+<script>
+// Initialize AOS
+AOS.init({
+    duration: 800,
+    once: true
+});
+
+// Counter Animation
+function animateCounter(element, target) {
+    let current = 0;
+    const increment = target / 50;
+    const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+            clearInterval(timer);
+            current = target;
+        }
+        element.textContent = Math.round(current).toLocaleString();
+    }, 20);
+}
+
+// Animate all counters
+document.querySelectorAll('.counter').forEach(counter => {
+    const target = parseFloat(counter.textContent);
+    animateCounter(counter, target);
+});
+
+// Chart Configurations
+Chart.defaults.color = '#ffffff';
+Chart.defaults.borderColor = 'rgba(46, 204, 113, 0.1)';
+
+// Emissions & Offset Chart
+const emissionsCtx = document.getElementById('emissionsChart').getContext('2d');
+new Chart(emissionsCtx, {
+    type: 'line',
+    data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'Emissions (kg CO₂)',
+            data: [1200, 950, 1100, 850, 1400, 750, 700, 1300, 1050, 1350, 950, 1450],
+            borderColor: '#2ecc71',
+            backgroundColor: 'rgba(46, 204, 113, 0.1)',
+            fill: true
+        }, {
+            label: 'Offset (kg CO₂)',
+            data: [200, 300, 250, 400, 350, 450, 500, 400, 600, 500, 550, 600],
+            borderColor: '#3498db',
+            backgroundColor: 'rgba(52, 152, 219, 0.1)',
+            fill: true
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top'
+            }
+        }
+    }
+});
+
+// Add this to your existing scripts
+const offsetCtx = document.getElementById('offsetChart').getContext('2d');
+new Chart(offsetCtx, {
+    type: 'bar',
+    data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'Emissions (kg CO₂)',
+            data: [1200, 950, 1100, 850, 1400, 750, 700, 1300, 1050, 1350, 950, 1450],
+            backgroundColor: 'rgba(231, 76, 60, 0.5)',
+            borderColor: '#e74c3c',
+            borderWidth: 1
+        }, {
+            label: 'Offset (kg CO₂)',
+            data: [600, 500, 550, 400, 700, 375, 350, 650, 525, 675, 475, 725],
+            backgroundColor: 'rgba(46, 204, 113, 0.5)',
+            borderColor: '#2ecc71',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true,
+                grid: {
+                    color: 'rgba(46, 204, 113, 0.1)'
+                }
+            },
+            x: {
+                grid: {
+                    color: 'rgba(46, 204, 113, 0.1)'
+                }
+            }
+        }
+    }
+});
+
+// Add this to your existing script
+document.addEventListener('DOMContentLoaded', function() {
+    // Animate prediction values
+    const predictionValues = document.querySelectorAll('.prediction-value');
+    predictionValues.forEach(value => {
+        const finalValue = value.textContent;
+        value.textContent = '0';
+        let current = 0;
+        const target = parseInt(finalValue);
+        const increment = target / 50;
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                clearInterval(timer);
+                value.textContent = finalValue;
+            } else {
+                value.textContent = `~${Math.round(current)}`;
+                if (finalValue.includes('kg')) {
+                    value.textContent += ' kg CO₂';
+                } else if (finalValue.includes('kWh')) {
+                    value.textContent += ' kWh';
+                } else if (finalValue.includes('km')) {
+                    value.textContent += ' km';
+                }
+            }
+        }, 20);
+    });
+});
+</script>
+{% endblock %}

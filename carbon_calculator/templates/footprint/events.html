@@ -1,0 +1,772 @@
+{% extends 'footprint/base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<!-- Add Mapbox and Three.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="hero-section">
+        <h1>Environmental Events</h1>
+        <p class="hero-text">Join us in making a difference through these upcoming eco-friendly events.</p>
+    </div>
+
+    <!-- Main Grid Layout -->
+    <div class="main-grid">
+        <!-- Left Column - Events -->
+        <div class="events-section">
+            <h2><i class="fas fa-calendar-alt"></i> Upcoming Events</h2>
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="date">25</span>
+                        <span class="month">JAN</span>
+                    </div>
+                    <div class="event-details">
+                        <h3>Tree Planting Drive</h3>
+                        <p class="event-location">📍 Central Park, New York</p>
+                        <p class="event-time">🕒 9:00 AM - 12:00 PM</p>
+                        <p class="event-description">Join us for a community tree planting event. Help increase our city's green cover!</p>
+                        <div class="event-stats">
+                            <span>🌱 Target: 200 trees</span>
+                            <span>👥 Spots left: 45</span>
+                        </div>
+                        <button class="btn btn-register">Register Now</button>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="date">28</span>
+                        <span class="month">JAN</span>
+                    </div>
+                    <div class="event-details">
+                        <h3>Eco Workshop</h3>
+                        <p class="event-location">📍 Brooklyn Community Center, NY</p>
+                        <p class="event-time">🕒 2:00 PM - 4:00 PM</p>
+                        <p class="event-description">Learn about sustainable living practices and DIY eco-friendly products.</p>
+                        <div class="event-stats">
+                            <span>🎓 Workshop capacity: 30</span>
+                            <span>👥 Spots left: 12</span>
+                        </div>
+                        <button class="btn btn-register">Register Now</button>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="date">02</span>
+                        <span class="month">FEB</span>
+                    </div>
+                    <div class="event-details">
+                        <h3>Beach Cleanup Drive</h3>
+                        <p class="event-location">📍 Coney Island Beach, NY</p>
+                        <p class="event-time">🕒 8:00 AM - 11:00 AM</p>
+                        <p class="event-description">Help clean our beaches and protect marine life. Equipment will be provided.</p>
+                        <div class="event-stats">
+                            <span>🌊 Target area: 2 miles</span>
+                            <span>👥 Spots left: 25</span>
+                        </div>
+                        <button class="btn btn-register">Register Now</button>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="date">05</span>
+                        <span class="month">FEB</span>
+                    </div>
+                    <div class="event-details">
+                        <h3>Solar Panel Workshop</h3>
+                        <p class="event-location">📍 Queens Science Center, NY</p>
+                        <p class="event-time">🕒 1:00 PM - 4:00 PM</p>
+                        <p class="event-description">Learn about solar energy installation and maintenance for residential use.</p>
+                        <div class="event-stats">
+                            <span>⚡ Hands-on training</span>
+                            <span>👥 Spots left: 15</span>
+                        </div>
+                        <button class="btn btn-register">Register Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column - Stats -->
+        <div class="stats-section">
+            <div class="stats-card">
+                <h2><i class="fas fa-chart-line"></i> Event Impact Dashboard</h2>
+                
+                <!-- Impact Metrics -->
+                <div class="impact-metrics">
+                    <div class="metric-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Total Participants</h3>
+                        <span class="metric-value">1,250</span>
+                        <span class="metric-trend positive">↑ 15% this month</span>
+                    </div>
+                    <div class="metric-card">
+                        <i class="fas fa-tree"></i>
+                        <h3>Trees Planted</h3>
+                        <span class="metric-value">750</span>
+                        <span class="metric-trend positive">↑ 25% this month</span>
+                    </div>
+                    <div class="metric-card">
+                        <i class="fas fa-leaf"></i>
+                        <h3>CO₂ Reduced</h3>
+                        <span class="metric-value">2.5 tons</span>
+                        <span class="metric-trend positive">↑ 10% this month</span>
+                    </div>
+                </div>
+
+                <!-- Top Contributors -->
+                <div class="contributors-section">
+                    <h3><i class="fas fa-trophy"></i> Top Contributors</h3>
+                    <div class="contributors-list">
+                        <div class="contributor">
+                            <div class="rank">1</div>
+                            <div class="contributor-info">
+                                <span class="name">Sarah Green</span>
+                                <span class="contribution">15 events attended</span>
+                            </div>
+                            <div class="points">1,500 pts</div>
+                        </div>
+                        <div class="contributor">
+                            <div class="rank">2</div>
+                            <div class="contributor-info">
+                                <span class="name">John Earth</span>
+                                <span class="contribution">12 events attended</span>
+                            </div>
+                            <div class="points">1,200 pts</div>
+                        </div>
+                        <div class="contributor">
+                            <div class="rank">3</div>
+                            <div class="contributor-info">
+                                <span class="name">Emma Sky</span>
+                                <span class="contribution">10 events attended</span>
+                            </div>
+                            <div class="points">1,000 pts</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Milestones -->
+                <div class="milestones-section">
+                    <h3><i class="fas fa-flag-checkered"></i> Community Goals</h3>
+                    <div class="milestone-cards">
+                        <div class="milestone">
+                            <div class="milestone-progress">
+                                <div class="progress-bar" style="width: 75%"></div>
+                                <span class="progress-text">75%</span>
+                            </div>
+                            <h4>1,000 Trees Goal</h4>
+                            <p>750/1,000 trees planted</p>
+                        </div>
+                        <div class="milestone">
+                            <div class="milestone-progress">
+                                <div class="progress-bar" style="width: 60%"></div>
+                                <span class="progress-text">60%</span>
+                            </div>
+                            <h4>Beach Cleanup</h4>
+                            <p>3/5 miles cleaned</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.hero-section {
+    text-align: center;
+    margin-bottom: 3rem;
+    background: rgba(0, 15, 2, 0.85);
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid rgba(46, 204, 113, 0.2);
+}
+
+.hero-section h1 {
+    color: #2ecc71;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero-text {
+    color: #fff;
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+/* Events Section Styles */
+.events-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.events-section h2 {
+    color: #2ecc71;
+    margin-bottom: 1rem;
+}
+
+.events-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.event-card {
+    background: rgba(0, 15, 2, 0.85);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    border: 1px solid rgba(46, 204, 113, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(46, 204, 113, 0.2);
+}
+
+.event-date {
+    background: #2ecc71;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+    position: relative;
+    overflow: hidden;
+}
+
+.event-date::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.event-card:hover .event-date::after {
+    opacity: 1;
+}
+
+.date {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+.month {
+    font-size: 1.2rem;
+    color: white;
+}
+
+.event-details {
+    padding: 1.5rem;
+    flex-grow: 1;
+}
+
+.event-details h3 {
+    color: #2ecc71;
+    margin-bottom: 0.5rem;
+}
+
+.event-location, .event-time {
+    color: #aaa;
+    margin-bottom: 0.5rem;
+}
+
+.event-description {
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.event-stats {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+.event-stats span {
+    background: rgba(46, 204, 113, 0.1);
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+/* Stats Section Styles */
+.stats-card {
+    background: rgba(0, 15, 2, 0.85);
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid rgba(46, 204, 113, 0.2);
+}
+
+.impact-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.metric-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.metric-card:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.metric-card i {
+    font-size: 2rem;
+    color: #2ecc71;
+    margin-bottom: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.metric-card:hover i {
+    transform: scale(1.1);
+}
+
+.metric-value {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #2ecc71;
+    margin: 0.5rem 0;
+    transition: all 0.3s ease;
+}
+
+.metric-trend {
+    font-size: 0.9rem;
+}
+
+.metric-trend.positive {
+    color: #2ecc71;
+}
+
+/* Contributors Styles */
+.contributors-section {
+    margin: 2rem 0;
+}
+
+.contributors-list {
+    margin-top: 1rem;
+}
+
+.contributor {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+    transform: translateX(0);
+}
+
+.contributor:hover {
+    transform: translateX(10px);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.rank {
+    width: 30px;
+    height: 30px;
+    background: #2ecc71;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-right: 1rem;
+    transition: all 0.3s ease;
+}
+
+.contributor:hover .rank {
+    transform: scale(1.1) rotate(360deg);
+}
+
+.contributor-info {
+    flex-grow: 1;
+}
+
+.contributor-info .name {
+    display: block;
+    font-weight: bold;
+    color: #fff;
+}
+
+.contributor-info .contribution {
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+.points {
+    color: #2ecc71;
+    font-weight: bold;
+}
+
+/* Milestones Styles */
+.milestone-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.milestone {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.milestone-progress {
+    position: relative;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.progress-bar {
+    position: absolute;
+    height: 100%;
+    background: #2ecc71;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    position: absolute;
+    right: 0;
+    top: -20px;
+    font-size: 0.9rem;
+    color: #2ecc71;
+}
+
+.milestone h4 {
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.milestone p {
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+/* Progress bar animation */
+.milestone-progress .progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 30px;
+    background: linear-gradient(90deg, 
+        rgba(255,255,255,0) 0%, 
+        rgba(255,255,255,0.3) 50%, 
+        rgba(255,255,255,0) 100%);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(400%);
+    }
+}
+
+/* Button animation */
+.btn-register {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    background: #2ecc71;
+    border: none;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-register::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn-register:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Stats number counter animation */
+.metric-value.updating {
+    transform: scale(1.1);
+    color: #3498db;
+}
+
+/* Map marker bounce animation */
+@keyframes markerBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.mapboxgl-marker {
+    transition: all 0.3s ease;
+}
+
+.mapboxgl-marker:hover {
+    animation: markerBounce 0.8s ease infinite;
+}
+
+@media (max-width: 1024px) {
+    .main-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-section {
+        order: -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .event-card {
+        flex-direction: column;
+    }
+
+    .event-date {
+        flex-direction: row;
+        gap: 0.5rem;
+        padding: 1rem;
+    }
+
+    .event-stats {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .impact-metrics {
+        grid-template-columns: 1fr;
+    }
+
+    .milestone-cards {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<script>
+// Initialize Mapbox
+mapboxgl.accessToken = 'pk.eyJ1Ijoia3Jpc2hqYWluMjAwNCIsImEiOiJjbHNxOWRxbmkwMXBqMmtvOWx4ZGN6ZWVhIn0.YaXpQAN6TujkXqiE-vBVtw';
+
+const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/dark-v10',
+    center: [-73.9442, 40.6782], // Center on New York
+    zoom: 10
+});
+
+// Add navigation controls
+map.addControl(new mapboxgl.NavigationControl());
+
+// Updated event markers with real locations
+function addEventMarkers() {
+    const events = [
+        {
+            coordinates: [-73.9665, 40.7829], // Central Park
+            title: "Tree Planting Drive",
+            description: "Central Park, New York<br>Jan 25, 9:00 AM",
+            icon: "🌱"
+        },
+        {
+            coordinates: [-73.9442, 40.6782], // Brooklyn
+            title: "Eco Workshop",
+            description: "Brooklyn Community Center<br>Jan 28, 2:00 PM",
+            icon: "🎓"
+        },
+        {
+            coordinates: [-73.9771, 40.5763], // Coney Island
+            title: "Beach Cleanup Drive",
+            description: "Coney Island Beach<br>Feb 02, 8:00 AM",
+            icon: "🌊"
+        },
+        {
+            coordinates: [-73.8448, 40.7282], // Queens
+            title: "Solar Panel Workshop",
+            description: "Queens Science Center<br>Feb 05, 1:00 PM",
+            icon: "⚡"
+        }
+    ];
+
+    events.forEach(event => {
+        // Create custom popup
+        const popup = new mapboxgl.Popup({
+            offset: 25,
+            className: 'event-popup'
+        }).setHTML(`
+            <div class="popup-content">
+                <h3>${event.icon} ${event.title}</h3>
+                <p>${event.description}</p>
+            </div>
+        `);
+
+        // Add marker
+        new mapboxgl.Marker({
+            color: "#2ecc71"
+        })
+        .setLngLat(event.coordinates)
+        .setPopup(popup)
+        .addTo(map);
+    });
+}
+
+// Add popup styles
+const additionalStyles = `
+    .event-popup {
+        background: rgba(0, 15, 2, 0.95);
+        border: 1px solid rgba(46, 204, 113, 0.3);
+        border-radius: 8px;
+        color: white;
+    }
+
+    .event-popup .mapboxgl-popup-content {
+        background: none;
+        padding: 1rem;
+    }
+
+    .event-popup .mapboxgl-popup-tip {
+        border-top-color: rgba(0, 15, 2, 0.95);
+    }
+
+    .popup-content h3 {
+        color: #2ecc71;
+        margin-bottom: 0.5rem;
+    }
+
+    .popup-content p {
+        color: #fff;
+        margin: 0;
+    }
+`;
+
+// Add styles to document
+const styleSheet = document.createElement("style");
+styleSheet.textContent = additionalStyles;
+document.head.appendChild(styleSheet);
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+    addEventMarkers();
+});
+
+// Add click handlers for register buttons
+document.querySelectorAll('.btn-register').forEach(button => {
+    button.addEventListener('click', function() {
+        alert('Registration feature coming soon!');
+    });
+});
+
+// Animate numbers when they update
+function animateValue(element, start, end, duration) {
+    let startTimestamp = null;
+    const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        element.textContent = Math.floor(progress * (end - start) + start);
+        if (progress < 1) {
+            window.requestAnimationFrame(step);
+        }
+    };
+    window.requestAnimationFrame(step);
+}
+
+// Enhanced metric updates
+function updateMetrics() {
+    const metrics = document.querySelectorAll('.metric-value');
+    metrics.forEach(metric => {
+        const currentValue = parseInt(metric.textContent);
+        const newValue = currentValue + Math.floor(Math.random() * 3) - 1;
+        
+        metric.classList.add('updating');
+        animateValue(metric, currentValue, newValue, 1000);
+        
+        setTimeout(() => {
+            metric.classList.remove('updating');
+        }, 1000);
+    });
+}
+
+// Smooth scroll to event when clicking on map marker
+map.on('click', '.mapboxgl-marker', function(e) {
+    const eventId = e.target.dataset.eventId;
+    const eventElement = document.querySelector(`#event-${eventId}`);
+    if (eventElement) {
+        eventElement.scrollIntoView({ behavior: 'smooth' });
+    }
+});
+
+// Initialize animations
+document.addEventListener('DOMContentLoaded', function() {
+    // Animate progress bars on load
+    document.querySelectorAll('.progress-bar').forEach(bar => {
+        const width = bar.style.width;
+        bar.style.width = '0';
+        setTimeout(() => {
+            bar.style.width = width;
+        }, 100);
+    });
+
+    // Start metrics update animation
+    setInterval(updateMetrics, 5000);
+});
+</script>
+{% endblock %}

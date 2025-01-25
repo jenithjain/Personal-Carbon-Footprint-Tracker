@@ -1,0 +1,320 @@
+{% extends 'footprint/base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Footprint Tracker</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <canvas id="globeCanvas"></canvas>
+    
+    <div class="content">
+        <section class="hero">
+            <h1>Track Your Carbon Footprint</h1>
+            <p>Make a difference by understanding and reducing your environmental impact</p>
+            <a href="{% url 'login' %}" class="cta-button">Start Tracking Now</a>
+        </section>
+
+        <section class="features">
+            <h2>Why Track Your Carbon Footprint?</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Personal Impact</h3>
+                    <p>Understand how your daily activities affect the environment</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Smart Insights</h3>
+                    <p>Get personalized recommendations to reduce your carbon footprint</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Track Progress</h3>
+                    <p>Monitor your improvements over time with detailed analytics</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <h2>What Our Users Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="quote">"This app helped me reduce my carbon footprint by 30% in just 3 months!"</div>
+                    <div class="author">- Sarah Johnson</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote">"The insights and recommendations are practical and easy to implement."</div>
+                    <div class="author">- Michael Chen</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote">"I love seeing my progress and impact visualized over time."</div>
+                    <div class="author">- Emma Rodriguez</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-footer">
+            <h2>Ready to Make a Difference?</h2>
+            <p>Join thousands of others in the fight against climate change</p>
+            <a href="{% url 'login' %}" class="cta-button">Get Started Today</a>
+        </section>
+    </div>
+</body>
+<script src="script.js"></script>
+</html> 
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    overflow-x: hidden;
+    background: #000;
+    color: white;
+}
+
+#globeCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    padding-top: 100px;
+}
+
+h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+}
+
+.cta-button {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    background: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.cta-button:hover {
+    transform: scale(1.05);
+}
+
+.features {
+    min-height: 100vh;
+    padding: 4rem 2rem;
+    background: rgba(0, 0, 0, 0);
+}
+
+.features h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.testimonials {
+    min-height: 80vh;
+    padding: 4rem 2rem;
+    background: rgba(0, 0, 0, 0);
+}
+
+.testimonials h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.testimonial-card {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 2.5rem;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+.testimonial-card .quote {
+    font-size: 1.2rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.testimonial-card .author {
+    font-weight: bold;
+    color: #2ecc71;
+}
+
+.cta-footer {
+    min-height: 50vh;
+    padding: 4rem 2rem;
+    text-align: center;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cta-footer h2 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.cta-footer p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+}
+
+/* Remove all navbar-related styles */
+.navbar,
+.nav-logo,
+.nav-links,
+.nav-cta {
+    display: none;
+}
+</style>
+
+<script>
+let scene, camera, renderer, globe;
+let targetRotation = { x: 0, y: 0 };
+let currentRotation = { x: 0, y: 0 };
+let initialCameraPosition = 5;
+let lastScrollY = window.scrollY;
+
+function init() {
+    // Scene setup
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    renderer = new THREE.WebGLRenderer({
+        canvas: document.getElementById('globeCanvas'),
+        antialias: true,
+        alpha: true
+    });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+
+    // Create simple globe with Earth texture
+    const geometry = new THREE.SphereGeometry(2, 64, 64);
+    const texture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/planets/earth_atmos_2048.jpg');
+    
+    // Simple material with just the Earth texture
+    const material = new THREE.MeshPhongMaterial({
+        map: texture,
+        shininess: 5
+    });
+    
+    globe = new THREE.Mesh(geometry, material);
+    scene.add(globe);
+
+    // Basic lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambientLight);
+    
+    const pointLight = new THREE.PointLight(0xffffff, 1.0);
+    pointLight.position.set(5, 3, 5);
+    scene.add(pointLight);
+
+    // Set initial camera position
+    initialCameraPosition = 7;
+    camera.position.z = initialCameraPosition;
+
+    // Handle window resize
+    window.addEventListener('resize', onWindowResize, false);
+    window.addEventListener('scroll', onScroll, false);
+
+    animate();
+}
+
+function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+function onScroll() {
+    const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+    targetRotation.y = scrollPercent * Math.PI * 2;
+    
+    const newZ = initialCameraPosition - (scrollPercent * 3);
+    camera.position.z = Math.max(3.5, newZ);
+}
+
+function animate() {
+    requestAnimationFrame(animate);
+
+    // Simple rotation
+    currentRotation.y += (targetRotation.y - currentRotation.y) * 0.03;
+    globe.rotation.y = currentRotation.y;
+
+    renderer.render(scene, camera);
+}
+
+init(); 
+</script>
+{% endblock %} 

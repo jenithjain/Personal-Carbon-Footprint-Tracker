@@ -1,0 +1,13 @@
+Month,Travel Distance (km),Transport Mode,Energy Use (kWh),Shopping (USD),Diet Type,Waste (kg),Emissions (kg CO₂)
+Jan,500,Car,300,200,Meat-Based,20,1200
+Feb,400,Public Transport,280,150,Plant-Based,15,950
+Mar,600,Carpool,320,250,Mixed,18,1100
+Apr,450,Bike,250,100,Meat-Based,12,850
+May,700,Car,350,300,Meat-Based,25,1400
+Jun,300,Public Transport,200,120,Plant-Based,10,750
+Jul,450,Bike,150,180,Mixed,15,700
+Aug,500,Car,400,220,Meat-Based,22,1300
+Sep,550,Carpool,310,190,Mixed,18,1050
+Oct,600,Car,360,250,Meat-Based,24,1350
+Nov,450,Public Transport,290,200,Plant-Based,15,950
+Dec,700,Car,400,300,Meat-Based,30,1450

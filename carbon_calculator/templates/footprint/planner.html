@@ -1,0 +1,577 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTrack - Eco Trip Planner</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Add Mapbox for interactive maps -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+    <script>
+    // Mock data for destinations
+    const mockDestinations = {
+        "Paris": { lat: 48.8566, lng: 2.3522 },
+        "Tokyo": { lat: 35.6762, lng: 139.6503 },
+        "New York": { lat: 40.7128, lng: -74.0060 },
+        "London": { lat: 51.5074, lng: -0.1278 },
+        "Sydney": { lat: -33.8688, lng: 151.2093 }
+    };
+
+    // Mock eco-friendly activities
+    const mockActivities = {
+        "Paris": [
+            {
+                type: 'accommodation',
+                title: 'Solar-Powered Boutique Hotel',
+                description: 'Stay in a sustainable hotel powered by renewable energy',
+                icon: 'fa-hotel',
+                location: [48.8566, 2.3522]
+            },
+            {
+                type: 'transport',
+                title: 'Bike Tour of Paris',
+                description: 'Explore the city on eco-friendly electric bikes',
+                icon: 'fa-bicycle',
+                location: [48.8584, 2.3488]
+            },
+            {
+                type: 'activity',
+                title: 'Local Farmers Market',
+                description: 'Visit organic markets and support local producers',
+                icon: 'fa-store',
+                location: [48.8570, 2.3522]
+            }
+        ],
+        "Tokyo": [
+            {
+                type: 'accommodation',
+                title: 'Eco Capsule Hotel',
+                description: 'Energy-efficient pod hotel with minimal environmental impact',
+                icon: 'fa-bed',
+                location: [35.6762, 139.6503]
+            },
+            {
+                type: 'transport',
+                title: 'Tokyo by Rail',
+                description: 'Efficient public transport exploration of the city',
+                icon: 'fa-train',
+                location: [35.6812, 139.7671]
+            }
+        ]
+        // Add more destinations as needed
+    };
+    </script>
+</head>
+<body>
+    <canvas id="globeCanvas"></canvas>
+    
+    <nav class="navbar">
+        <div class="nav-logo">
+            <a href="{% url 'landing' %}" style="text-decoration: none; color: inherit;">EcoTrack</a>
+        </div>
+        <div class="nav-links">
+            <a href="{% url 'dashboard:home' %}" class="nav-item" data-active="false">Dashboard</a>
+            <a href="{% url 'footprint:home' %}" class="nav-item" data-active="false">Footprint</a>
+            <a href="{% url 'rewards:home' %}" class="nav-item" data-active="false">Rewards</a>
+            <a href="{% url 'trip_planner:home' %}" class="nav-item" data-active="true">Trip Planner</a>
+        </div>
+    </nav>
+
+    <div class="planner-container">
+        <!-- Left Column -->
+        <div class="planner-left">
+            <!-- Trip Planning Form -->
+            <div class="planning-section card">
+                <h2><i class="fas fa-route"></i> Plan Your Eco-Trip</h2>
+                <form id="tripPlannerForm" class="trip-form">
+                    <div class="form-group">
+                        <label><i class="fas fa-map-marker-alt"></i> Destination</label>
+                        <input type="text" id="destination" list="destinations" placeholder="Where do you want to go?" required>
+                        <datalist id="destinations"></datalist>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-calendar"></i> Start Date</label>
+                            <input type="date" id="startDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-calendar"></i> End Date</label>
+                            <input type="date" id="endDate" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-users"></i> Number of Travelers</label>
+                        <input type="number" id="travelers" min="1" value="1" required>
+                    </div>
+                    <button type="submit" class="plan-btn">Generate Eco-Friendly Itinerary</button>
+                </form>
+            </div>
+
+            <!-- Generated Itinerary -->
+            <div class="itinerary-section card hidden" id="itinerarySection">
+                <h2><i class="fas fa-calendar-alt"></i> Your Eco-Friendly Itinerary</h2>
+                <div class="itinerary-timeline" id="itineraryTimeline">
+                    <!-- Dynamically populated by JavaScript -->
+                </div>
+                <div class="eco-recommendations">
+                    <h3><i class="fas fa-leaf"></i> Eco-Friendly Recommendations</h3>
+                    <div class="recommendations-grid" id="recommendationsGrid">
+                        <!-- Dynamically populated by JavaScript -->
+                    </div>
+                </div>
+                <button class="save-btn" onclick="saveItinerary()">
+                    <i class="fas fa-save"></i> Save Itinerary
+                </button>
+            </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="planner-right">
+            <!-- Interactive Map -->
+            <div class="map-section card">
+                <h2><i class="fas fa-map"></i> Destination Map</h2>
+                <div id="map"></div>
+                <div class="map-markers" id="mapMarkers">
+                    <!-- Dynamically populated markers list -->
+                </div>
+                <div class="eco-metrics">
+                    <div class="metric">
+                        <i class="fas fa-cloud"></i>
+                        <span>Carbon Footprint</span>
+                        <strong id="carbonMetric">0 kg CO₂</strong>
+                    </div>
+                    <div class="metric">
+                        <i class="fas fa-tree"></i>
+                        <span>Trees to Offset</span>
+                        <strong id="treesMetric">0 trees</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<style>
+/* Base styles from login.html */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    overflow-x: hidden;
+    background: #000;
+    color: white;
+}
+
+#globeCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* Layout styles */
+.planner-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 2rem;
+    padding: 6rem 2rem 2rem;
+    max-width: 1800px;
+    margin: 0 auto;
+}
+
+.planner-left, .planner-right {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Card styles */
+.card {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 2rem;
+    border: 1px solid rgba(46, 204, 113, 0.3);
+}
+
+/* Form styles */
+.trip-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+input, select {
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(46, 204, 113, 0.3);
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+/* Map styles */
+.map-section {
+    position: sticky;
+    top: 6rem;
+}
+
+#map {
+    height: 500px;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+.map-markers {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-top: 1rem;
+}
+
+.marker-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);  
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.marker-item:hover {
+    background: rgba(46, 204, 113, 0.2);
+}
+
+.marker-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #2ecc71;
+    border-radius: 50%;
+}
+
+.eco-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.metric {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* Itinerary styles */
+.itinerary-timeline {
+    margin: 2rem 0;
+}
+
+.timeline-day {
+    border-left: 2px solid #2ecc71;
+    padding-left: 1.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.timeline-day::before {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: 0;
+    width: 14px;
+    height: 14px;
+    background: #2ecc71;
+    border-radius: 50%;
+}
+
+.recommendations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.recommendation-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.recommendation-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Button styles */
+.plan-btn, .save-btn {
+    padding: 1rem;
+    background: linear-gradient(45deg, #2ecc71, #27ae60);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.plan-btn:hover, .save-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .planner-container {
+        grid-template-columns: 1fr;
+    }
+
+    .map-section {
+        position: relative;
+        top: 0;
+    }
+
+    #map {
+        height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .planner-container {
+        padding: 5rem 1rem 1rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<script>
+// Globe animation code from login.html
+// ... (paste the globe animation code here) ...
+
+// Initialize Mapbox with mock data
+mapboxgl.accessToken = 'pk.eyJ1Ijoia3Jpc2hqYWluMjAwNCIsImEiOiJjbHNxOWRxbmkwMXBqMmtvOWx4ZGN6ZWVhIn0.YaXpQAN6TujkXqiE-vBVtw';
+
+const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/dark-v10',
+    center: [2.3522, 48.8566], // Default to Paris
+    zoom: 12
+});
+
+// Add navigation controls
+map.addControl(new mapboxgl.NavigationControl());
+
+function updateMap(destination) {
+    const coords = mockDestinations[destination];
+    if (!coords) return;
+
+    // Fly to destination
+    map.flyTo({
+        center: [coords.lng, coords.lat],
+        zoom: 12,
+        essential: true
+    });
+
+    // Clear existing markers
+    document.querySelectorAll('.mapboxgl-marker').forEach(marker => marker.remove());
+
+    // Add destination marker
+    new mapboxgl.Marker({
+        color: "#2ecc71"
+    })
+    .setLngLat([coords.lng, coords.lat])
+    .addTo(map);
+
+    // Add activity markers
+    const activities = mockActivities[destination] || [];
+    activities.forEach(activity => {
+        new mapboxgl.Marker({
+            color: "#3498db"
+        })
+        .setLngLat(activity.location)
+        .setPopup(new mapboxgl.Popup().setHTML(`
+            <h3>${activity.title}</h3>
+            <p>${activity.description}</p>
+        `))
+        .addTo(map);
+    });
+
+    // Update markers list
+    const markersList = document.getElementById('mapMarkers');
+    markersList.innerHTML = activities.map(activity => `
+        <div class="marker-item" onclick="focusLocation(${activity.location})">
+            <div class="marker-icon">
+                <i class="fas ${activity.icon}"></i>
+            </div>
+            <div class="marker-info">
+                <strong>${activity.title}</strong>
+                <small>${activity.type}</small>
+            </div>
+        </div>
+    `).join('');
+}
+
+function focusLocation(coords) {
+    map.flyTo({
+        center: coords,
+        zoom: 14,
+        essential: true
+    });
+}
+
+// Trip planning functionality
+document.getElementById('tripPlannerForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    generateItinerary();
+});
+
+function generateItinerary() {
+    const destination = document.getElementById('destination').value;
+    const startDate = new Date(document.getElementById('startDate').value);
+    const endDate = new Date(document.getElementById('endDate').value);
+    const travelers = document.getElementById('travelers').value;
+
+    // Calculate trip duration
+    const duration = (endDate - startDate) / (1000 * 60 * 60 * 24);
+
+    // Get activities from mock data
+    const activities = mockActivities[destination] || [];
+
+    // Update map
+    updateMap(destination);
+
+    // Calculate and update eco metrics
+    const carbonFootprint = travelers * duration * 10; // Example calculation
+    const treesToPlant = Math.ceil(carbonFootprint / 20);
+
+    document.getElementById('carbonMetric').textContent = `${carbonFootprint} kg CO₂`;
+    document.getElementById('treesMetric').textContent = `${treesToPlant} trees`;
+
+    // Display itinerary
+    displayItinerary(activities, startDate);
+
+    // Show itinerary section
+    document.getElementById('itinerarySection').classList.remove('hidden');
+}
+
+function displayItinerary(activities, startDate) {
+    const timeline = document.getElementById('itineraryTimeline');
+    const recommendations = document.getElementById('recommendationsGrid');
+    
+    timeline.innerHTML = '';
+    recommendations.innerHTML = '';
+
+    activities.forEach((activity, index) => {
+        // Add to timeline
+        const day = new Date(startDate);
+        day.setDate(day.getDate() + index);
+        
+        const dayElement = document.createElement('div');
+        dayElement.className = 'timeline-day';
+        dayElement.innerHTML = `
+            <h3>Day ${index + 1} - ${day.toLocaleDateString()}</h3>
+            <div class="timeline-activity">
+                <i class="fas ${activity.icon}"></i>
+                <h4>${activity.title}</h4>
+                <p>${activity.description}</p>
+            </div>
+        `;
+        timeline.appendChild(dayElement);
+
+        // Add to recommendations
+        const recommendationCard = document.createElement('div');
+        recommendationCard.className = 'recommendation-card';
+        recommendationCard.innerHTML = `
+            <i class="fas ${activity.icon}"></i>
+            <h4>${activity.title}</h4>
+            <p>${activity.description}</p>
+        `;
+        recommendations.appendChild(recommendationCard);
+    });
+}
+
+function saveItinerary() {
+    // Implement itinerary saving functionality
+    showNotification('Itinerary saved successfully!', 'success');
+}
+
+function showNotification(message, type) {
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.classList.add('show');
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }, 100);
+}
+
+// Add destination autocomplete
+const destinationInput = document.getElementById('destination');
+destinationInput.addEventListener('input', function(e) {
+    const value = e.target.value.toLowerCase();
+    const suggestions = Object.keys(mockDestinations).filter(city => 
+        city.toLowerCase().includes(value)
+    );
+    
+    // Update suggestions list (you'll need to add a datalist to the HTML)
+    const datalist = document.getElementById('destinations');
+    datalist.innerHTML = suggestions.map(city => 
+        `<option value="${city}">`
+    ).join('');
+});
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+    init(); // Initialize globe
+});
+</script>
+
+</body>
+</html> 

@@ -1,0 +1,260 @@
+{% extends 'footprint/base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="rewards-container">
+    <!-- User Points Banner -->
+    <div class="points-banner">
+        <div class="points-display">
+            <i class="fas fa-leaf"></i>
+            <div class="points-info">
+                <span class="points-value">1,250</span>
+                <span class="points-label">Green Points Available</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rewards Categories -->
+    <div class="categories">
+        <button class="category-btn active">All Rewards</button>
+        <button class="category-btn">Eco Products</button>
+        <button class="category-btn">Plant Trees</button>
+        <button class="category-btn">Sustainable Fashion</button>
+        <button class="category-btn">Green Tech</button>
+    </div>
+
+    <!-- Rewards Grid -->
+    <div class="rewards-grid">
+        <!-- Eco Product Card -->
+        <div class="reward-card">
+            <div class="reward-image">
+                <img src="{% static 'images/bamboo-set.jpg' %}" alt="Bamboo Utensil Set">
+                <div class="points-tag">500 points</div>
+            </div>
+            <div class="reward-info">
+                <h3>Bamboo Utensil Set</h3>
+                <p>Eco-friendly portable utensil set with carrying case</p>
+                <button class="redeem-btn">Redeem Reward</button>
+            </div>
+        </div>
+
+        <!-- Plant Trees Card -->
+        <div class="reward-card">
+            <div class="reward-image">
+                <img src="{% static 'images/plant-tree.jpg' %}" alt="Plant Trees">
+                <div class="points-tag">300 points</div>
+            </div>
+            <div class="reward-info">
+                <h3>Plant a Tree</h3>
+                <p>We'll plant a tree in your name in affected areas</p>
+                <button class="redeem-btn">Plant Now</button>
+            </div>
+        </div>
+
+        <!-- Eco Fashion Card -->
+        <div class="reward-card">
+            <div class="reward-image">
+                <img src="{% static 'images/eco-tshirt.jpg' %}" alt="Eco T-Shirt">
+                <div class="points-tag">800 points</div>
+            </div>
+            <div class="reward-info">
+                <h3>Recycled Cotton T-Shirt</h3>
+                <p>100% recycled cotton t-shirt with eco-friendly dyes</p>
+                <button class="redeem-btn">Redeem Reward</button>
+            </div>
+        </div>
+
+        <!-- Solar Charger Card -->
+        <div class="reward-card">
+            <div class="reward-image">
+                <img src="{% static 'images/solar-charger.jpg' %}" alt="Solar Charger">
+                <div class="points-tag">1000 points</div>
+            </div>
+            <div class="reward-info">
+                <h3>Portable Solar Charger</h3>
+                <p>10000mAh solar-powered portable charger</p>
+                <button class="redeem-btn">Redeem Reward</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.rewards-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.points-banner {
+    background: rgba(0, 15, 2, 0.85);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(46, 204, 113, 0.2);
+}
+
+.points-display {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.points-display i {
+    font-size: 2.5rem;
+    color: #2ecc71;
+}
+
+.points-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.points-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2ecc71;
+}
+
+.points-label {
+    color: #888;
+}
+
+.categories {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+}
+
+.category-btn {
+    padding: 0.8rem 1.5rem;
+    background: rgba(0, 15, 2, 0.85);
+    border: 1px solid rgba(46, 204, 113, 0.2);
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.category-btn.active,
+.category-btn:hover {
+    background: #2ecc71;
+    border-color: #2ecc71;
+}
+
+.rewards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.reward-card {
+    background: rgba(0, 15, 2, 0.85);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(46, 204, 113, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.reward-card:hover {
+    transform: translateY(-5px);
+}
+
+.reward-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.reward-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.points-tag {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(46, 204, 113, 0.9);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.reward-info {
+    padding: 1.5rem;
+}
+
+.reward-info h3 {
+    margin-bottom: 0.5rem;
+    color: #2ecc71;
+}
+
+.reward-info p {
+    color: #888;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.redeem-btn {
+    width: 100%;
+    padding: 0.8rem;
+    background: #2ecc71;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.redeem-btn:hover {
+    background: #27ae60;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .rewards-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .categories {
+        flex-wrap: nowrap;
+        justify-content: start;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Category button click handling
+    const categoryBtns = document.querySelectorAll('.category-btn');
+    categoryBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove active class from all buttons
+            categoryBtns.forEach(b => b.classList.remove('active'));
+            // Add active class to clicked button
+            btn.classList.add('active');
+            // Here you would typically filter the rewards based on category
+        });
+    });
+
+    // Redeem button click handling
+    const redeemBtns = document.querySelectorAll('.redeem-btn');
+    redeemBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Here you would handle the redemption process
+            alert('Reward redemption processing...');
+        });
+    });
+});
+</script>
+{% endblock %} 
