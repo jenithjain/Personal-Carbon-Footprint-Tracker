@@ -2,13 +2,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import CarbonFootprint, HomeData, Plant, Vehicle
 from .forms import CarbonFootprintForm
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login as auth_login
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.http import JsonResponse
 import requests
 from django.views.decorators.csrf import csrf_exempt
 import json
 import logging
+from django.urls import reverse
 
 logger = logging.getLogger(__name__)
 
@@ -37,8 +38,7 @@ def rewards_page(request):
     return render(request, 'footprint/rewards.html')
 
 def landing_page(request):
-    if request.user.is_authenticated:
-        return redirect('footprint:dashboard')
+    # Remove any redirects - always show landing page first
     return render(request, 'footprint/landing.html')
 
 def signup(request):
@@ -59,8 +59,18 @@ def events(request):
     return render(request, 'footprint/events.html')
 
 def login_view(request):
-    # your login view logic
-    return render(request, 'footprint/login.html')
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            auth_login(request, user)
+            return redirect('footprint:dashboard')
+    else:
+        form = AuthenticationForm()
+    
+    return render(request, 'footprint/login.html', {
+        'form': form
+    })
 
 def signup_view(request):
     # your signup view logic
