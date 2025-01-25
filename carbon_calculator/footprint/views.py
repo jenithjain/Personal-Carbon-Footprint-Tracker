@@ -5,6 +5,12 @@ from .forms import CarbonFootprintForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.http import JsonResponse
+import requests
+from django.views.decorators.csrf import csrf_exempt
+import json
+import logging
+
+logger = logging.getLogger(__name__)
 
 # Create your views here.
 
@@ -66,17 +72,48 @@ def signup_view(request):
 
 @login_required
 def decarbonize(request):
+    api_key = '9dead4ec7bc94844b5e09bcbf8d20b86'
+    logger.info(f"Decarbonize page accessed by user: {request.user}")
+    
+    # Log query parameters if any
+    if request.GET:
+        logger.info(f"Query parameters: {request.GET}")
+    
+    context = {
+        'api_key': api_key
+    }
+    logger.info("Rendering decarbonize page with API key")
+    return render(request, 'footprint/decarbonize.html', context)
+
+@csrf_exempt
+def calculate_route(request):
     if request.method == 'POST':
-        source = request.POST.get('source')
-        destination = request.POST.get('destination')
-        transport_modes = request.POST.getlist('transport')
-        
-        # Here you would typically:
-        # 1. Call a maps API to get route information
-        # 2. Calculate carbon emissions for each transport mode
-        # 3. Return the results
-        
-        # For now, just render the template
-        return render(request, 'footprint/decarbonize.html')
-        
-    return render(request, 'footprint/decarbonize.html')
+        try:
+            logger.info("Route calculation request received")
+            data = json.loads(request.body)
+            source = data.get('source')
+            destination = data.get('destination')
+            
+            logger.info(f"Calculating route from {source} to {destination}")
+            
+            # Log the complete request data
+            logger.debug(f"Complete request data: {data}")
+            
+            return JsonResponse({
+                'success': True,
+                'message': 'Route calculation endpoint reached',
+                'source': source,
+                'destination': destination
+            })
+        except Exception as e:
+            logger.error(f"Error calculating route: {str(e)}", exc_info=True)
+            return JsonResponse({
+                'success': False,
+                'error': str(e)
+            })
+    
+    logger.warning("Invalid request method for route calculation")
+    return JsonResponse({
+        'success': False,
+        'error': 'Invalid request method'
+    })
