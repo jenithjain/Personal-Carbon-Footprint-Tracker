@@ -127,3 +127,7 @@ def calculate_route(request):
         'success': False,
         'error': 'Invalid request method'
     })
+
+@login_required
+def scans_view(request):
+    return render(request, 'footprint/scans.html')

@@ -15,4 +15,5 @@ urlpatterns = [
     path('signup/', views.signup_view, name='signup'),
     path('decarbonize/', views.decarbonize, name='decarbonize'),
     path('calculate-route/', views.calculate_route, name='calculate_route'),
+    path('scans/', views.scans_view, name='scans'),
 ] 
