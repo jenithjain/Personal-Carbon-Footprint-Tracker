@@ -13,4 +13,5 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('events/', views.events, name='events'),
     path('signup/', views.signup_view, name='signup'),
+    path('decarbonize/', views.decarbonize, name='decarbonize'),
 ] 

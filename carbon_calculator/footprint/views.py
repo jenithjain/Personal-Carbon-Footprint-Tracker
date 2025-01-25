@@ -63,3 +63,20 @@ def signup_view(request):
 # Remove the my_home view if it exists
 # def my_home(request):
 #     return render(request, 'footprint/my_home.html')
+
+@login_required
+def decarbonize(request):
+    if request.method == 'POST':
+        source = request.POST.get('source')
+        destination = request.POST.get('destination')
+        transport_modes = request.POST.getlist('transport')
+        
+        # Here you would typically:
+        # 1. Call a maps API to get route information
+        # 2. Calculate carbon emissions for each transport mode
+        # 3. Return the results
+        
+        # For now, just render the template
+        return render(request, 'footprint/decarbonize.html')
+        
+    return render(request, 'footprint/decarbonize.html')
