@@ -122,6 +122,17 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 
 <style>
+/* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+* {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
 .decarbonize-container {
     max-width: 1400px;
     margin: 2rem auto;
@@ -265,6 +276,12 @@ document.addEventListener('DOMContentLoaded', function() {
     border: 1px solid rgba(46, 204, 113, 0.2);
     overflow-y: auto;
     height: 100%;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.results-section::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
 }
 
 .route-card {
