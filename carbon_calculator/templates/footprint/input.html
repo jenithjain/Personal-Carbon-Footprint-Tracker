@@ -17,8 +17,23 @@
                     <span class="helper-text">Average weekly car mileage</span>
                 </div>
                 <div class="form-group">
+                    <label for="car_type">Vehicle Type</label>
+                    <select id="car_type" name="car_type" required>
+                        <option value="electric">Electric Vehicle</option>
+                        <option value="hybrid">Hybrid</option>
+                        <option value="petrol">Petrol</option>
+                        <option value="diesel">Diesel</option>
+                        <option value="suv">SUV</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="public_transport">Public Transport Hours per Week</label>
                     <input type="number" id="public_transport" name="public_transport" min="0" step="0.5" required>
+                </div>
+                <div class="form-group">
+                    <label for="flights_year">Flights per Year</label>
+                    <input type="number" id="flights_year" name="flights_year" min="0" required>
+                    <span class="helper-text">Number of return flights</span>
                 </div>
             </div>
         </div>
@@ -32,8 +47,22 @@
                     <input type="number" id="electricity" name="electricity" min="0" required>
                 </div>
                 <div class="form-group">
+                    <label for="renewable">Renewable Energy Percentage</label>
+                    <input type="number" id="renewable" name="renewable" min="0" max="100" required>
+                    <span class="helper-text">% of energy from renewable sources</span>
+                </div>
+                <div class="form-group">
                     <label for="gas">Monthly Gas Usage (therms)</label>
                     <input type="number" id="gas" name="gas" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="home_type">Home Type</label>
+                    <select id="home_type" name="home_type" required>
+                        <option value="apartment">Apartment</option>
+                        <option value="small_house">Small House</option>
+                        <option value="medium_house">Medium House</option>
+                        <option value="large_house">Large House</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -47,17 +76,54 @@
                     <select id="diet" name="diet" required>
                         <option value="meat_heavy">Meat Heavy</option>
                         <option value="average">Average</option>
+                        <option value="pescatarian">Pescatarian</option>
                         <option value="vegetarian">Vegetarian</option>
                         <option value="vegan">Vegan</option>
                     </select>
                 </div>
                 <div class="form-group">
+                    <label for="food_waste">Food Waste per Week (kg)</label>
+                    <input type="number" id="food_waste" name="food_waste" min="0" step="0.1" required>
+                </div>
+                <div class="form-group">
                     <label for="recycling">Recycling Habits</label>
                     <select id="recycling" name="recycling" required>
                         <option value="always">Always Recycle</option>
+                        <option value="mostly">Mostly Recycle</option>
                         <option value="sometimes">Sometimes Recycle</option>
                         <option value="never">Never Recycle</option>
                     </select>
+                </div>
+                <div class="form-group">
+                    <label for="shopping">Shopping Habits</label>
+                    <select id="shopping" name="shopping" required>
+                        <option value="minimal">Minimal Consumer</option>
+                        <option value="average">Average Consumer</option>
+                        <option value="frequent">Frequent Shopper</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Water Usage Section -->
+        <div class="form-section">
+            <h3>Water Consumption</h3>
+            <div class="input-grid">
+                <div class="form-group">
+                    <label for="shower_duration">Average Shower Duration (minutes)</label>
+                    <input type="number" id="shower_duration" name="shower_duration" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="showers_week">Showers per Week</label>
+                    <input type="number" id="showers_week" name="showers_week" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="laundry_loads">Laundry Loads per Week</label>
+                    <input type="number" id="laundry_loads" name="laundry_loads" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="dishwasher_loads">Dishwasher Loads per Week</label>
+                    <input type="number" id="dishwasher_loads" name="dishwasher_loads" min="0" required>
                 </div>
             </div>
         </div>
@@ -380,40 +446,57 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Get form values
         const carMiles = parseFloat(document.getElementById('car_miles').value) || 0;
+        const carType = document.getElementById('car_type').value;
         const publicTransport = parseFloat(document.getElementById('public_transport').value) || 0;
+        const flightsYear = parseFloat(document.getElementById('flights_year').value) || 0;
         const electricity = parseFloat(document.getElementById('electricity').value) || 0;
+        const renewable = parseFloat(document.getElementById('renewable').value) || 0;
         const gas = parseFloat(document.getElementById('gas').value) || 0;
+        const homeType = document.getElementById('home_type').value;
         const diet = document.getElementById('diet').value;
+        const foodWaste = parseFloat(document.getElementById('food_waste').value) || 0;
         const recycling = document.getElementById('recycling').value;
+        const shopping = document.getElementById('shopping').value;
+        const showerDuration = parseFloat(document.getElementById('shower_duration').value) || 0;
+        const showersWeek = parseFloat(document.getElementById('showers_week').value) || 0;
+        const laundryLoads = parseFloat(document.getElementById('laundry_loads').value) || 0;
+        const dishwasherLoads = parseFloat(document.getElementById('dishwasher_loads').value) || 0;
         
         // Calculate transportation impact (using EPA emission factors)
         const carEmissions = carMiles * 52 * 0.404; // EPA: 404g CO2 per mile
         const publicTransportEmissions = publicTransport * 52 * 0.14; // Average bus/train emissions
-        const transportTotal = carEmissions + publicTransportEmissions;
+        const flightsEmissions = flightsYear * 2 * 0.14; // Average return flight emissions
+        const transportTotal = carEmissions + publicTransportEmissions + flightsEmissions;
         
         // Calculate home energy impact (using EPA emission factors)
         const electricityEmissions = electricity * 12 * 0.92; // EPA: 0.92 kg CO2 per kWh (varies by region)
+        const renewableEmissions = electricity * 12 * (100 - renewable) * 0.001; // Assuming 100% renewable energy
         const gasEmissions = gas * 12 * 5.3; // EPA: 5.3 kg CO2 per therm
-        const energyTotal = electricityEmissions + gasEmissions;
+        const energyTotal = electricityEmissions + renewableEmissions + gasEmissions;
         
         // Calculate lifestyle impact
         const dietFactors = {
             'meat_heavy': 2.5, // Based on FAO data
             'average': 2.0,
+            'pescatarian': 1.5,
             'vegetarian': 1.5,
             'vegan': 1.0
         };
         
         const recyclingFactors = {
             'never': 1.2,
+            'mostly': 1.0,
             'sometimes': 1.0,
             'always': 0.8
         };
         
         const lifestyleTotal = (dietFactors[diet] * 1000) * recyclingFactors[recycling];
         
+        // Calculate water usage impact
+        const waterEmissions = (showerDuration * showersWeek * 1.5) + (laundryLoads * 0.02) + (dishwasherLoads * 0.05); // Assuming 1.5 kg CO2 per minute of shower, 0.02 kg CO2 per load of laundry, 0.05 kg CO2 per load of dishwasher
+        
         // Calculate total footprint
-        const totalFootprint = transportTotal + energyTotal + lifestyleTotal;
+        const totalFootprint = transportTotal + energyTotal + lifestyleTotal + waterEmissions;
         
         // Store results for recommendations
         const results = {

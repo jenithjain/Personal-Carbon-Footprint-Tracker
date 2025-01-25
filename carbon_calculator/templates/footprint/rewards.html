@@ -38,7 +38,14 @@
             <div class="reward-info">
                 <h3>Bamboo Utensil Set</h3>
                 <p>Eco-friendly portable utensil set with carrying case</p>
-                <button class="redeem-btn">Redeem Reward</button>
+                <div class="emission-savings">
+                    <i class="fas fa-leaf"></i>
+                    <span>Saves ~2.5 kg CO₂ per year</span>
+                    <div class="savings-tooltip">
+                        Compared to disposable plastic utensils
+                    </div>
+                </div>
+                <button class="redeem-btn" data-product="bamboo-set" data-savings="2.5">Redeem Reward</button>
             </div>
         </div>
 
@@ -51,7 +58,14 @@
             <div class="reward-info">
                 <h3>Plant a Tree</h3>
                 <p>We'll plant a tree in your name in affected areas</p>
-                <button class="redeem-btn">Plant Now</button>
+                <div class="emission-savings">
+                    <i class="fas fa-leaf"></i>
+                    <span>Absorbs ~22 kg CO₂ per year</span>
+                    <div class="savings-tooltip">
+                        Average CO₂ absorption per tree annually
+                    </div>
+                </div>
+                <button class="redeem-btn" data-product="tree" data-savings="22">Plant Now</button>
             </div>
         </div>
 
@@ -64,7 +78,14 @@
             <div class="reward-info">
                 <h3>Recycled Cotton T-Shirt</h3>
                 <p>100% recycled cotton t-shirt with eco-friendly dyes</p>
-                <button class="redeem-btn">Redeem Reward</button>
+                <div class="emission-savings">
+                    <i class="fas fa-leaf"></i>
+                    <span>Saves ~6.5 kg CO₂</span>
+                    <div class="savings-tooltip">
+                        Compared to new cotton t-shirt production
+                    </div>
+                </div>
+                <button class="redeem-btn" data-product="eco-tshirt" data-savings="6.5">Redeem Reward</button>
             </div>
         </div>
 
@@ -77,7 +98,14 @@
             <div class="reward-info">
                 <h3>Portable Solar Charger</h3>
                 <p>10000mAh solar-powered portable charger</p>
-                <button class="redeem-btn">Redeem Reward</button>
+                <div class="emission-savings">
+                    <i class="fas fa-leaf"></i>
+                    <span>Saves ~8.2 kg CO₂ per year</span>
+                    <div class="savings-tooltip">
+                        Compared to grid-powered charging
+                    </div>
+                </div>
+                <button class="redeem-btn" data-product="solar-charger" data-savings="8.2">Redeem Reward</button>
             </div>
         </div>
     </div>
@@ -258,6 +286,45 @@
     box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
 }
 
+.emission-savings {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    padding: 0.5rem;
+    background: rgba(46, 204, 113, 0.1);
+    border-radius: 8px;
+    position: relative;
+}
+
+.emission-savings i {
+    color: #2ecc71;
+}
+
+.emission-savings span {
+    color: #2ecc71;
+    font-weight: 500;
+}
+
+.savings-tooltip {
+    display: none;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    z-index: 1000;
+}
+
+.emission-savings:hover .savings-tooltip {
+    display: block;
+}
+
 @media (max-width: 768px) {
     .rewards-grid {
         grid-template-columns: 1fr;
@@ -276,20 +343,24 @@ document.addEventListener('DOMContentLoaded', function() {
     const categoryBtns = document.querySelectorAll('.category-btn');
     categoryBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Remove active class from all buttons
             categoryBtns.forEach(b => b.classList.remove('active'));
-            // Add active class to clicked button
             btn.classList.add('active');
-            // Here you would typically filter the rewards based on category
         });
     });
 
-    // Redeem button click handling
+    // Redeem button click handling with emission savings
     const redeemBtns = document.querySelectorAll('.redeem-btn');
     redeemBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Here you would handle the redemption process
-            alert('Reward redemption processing...');
+            const product = btn.dataset.product;
+            const savings = parseFloat(btn.dataset.savings);
+            
+            const message = `Thank you for redeeming this reward!\n\n` +
+                          `By choosing this eco-friendly option, you're saving approximately ` +
+                          `${savings} kg of CO₂ emissions ${savings > 10 ? 'per year' : ''}.\n\n` +
+                          `Keep making sustainable choices!`;
+            
+            alert(message);
         });
     });
 });

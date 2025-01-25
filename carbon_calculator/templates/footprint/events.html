@@ -36,7 +36,10 @@
                             <span>🌱 Target: 200 trees</span>
                             <span>👥 Spots left: 45</span>
                         </div>
-                        <button class="btn btn-register">Register Now</button>
+                        <button class="btn btn-register" 
+                                data-event="tree-planting" 
+                                data-trees="200"
+                                data-co2="4400">Register Now</button>
                     </div>
                 </div>
 
@@ -54,7 +57,10 @@
                             <span>🎓 Workshop capacity: 30</span>
                             <span>👥 Spots left: 12</span>
                         </div>
-                        <button class="btn btn-register">Register Now</button>
+                        <button class="btn btn-register" 
+                                data-event="eco-workshop" 
+                                data-practices="5"
+                                data-co2="250">Register Now</button>
                     </div>
                 </div>
 
@@ -72,7 +78,10 @@
                             <span>🌊 Target area: 2 miles</span>
                             <span>👥 Spots left: 25</span>
                         </div>
-                        <button class="btn btn-register">Register Now</button>
+                        <button class="btn btn-register" 
+                                data-event="beach-cleanup" 
+                                data-area="2"
+                                data-co2="300">Register Now</button>
                     </div>
                 </div>
 
@@ -90,7 +99,10 @@
                             <span>⚡ Hands-on training</span>
                             <span>👥 Spots left: 15</span>
                         </div>
-                        <button class="btn btn-register">Register Now</button>
+                        <button class="btn btn-register" 
+                                data-event="solar-workshop" 
+                                data-energy="1000"
+                                data-co2="500">Register Now</button>
                     </div>
                 </div>
             </div>
@@ -202,16 +214,18 @@
 .hero-section {
     text-align: center;
     margin-bottom: 3rem;
-    background: rgba(0, 15, 2, 0.85);
     padding: 2rem;
+    background: rgba(0, 15, 2, 0.1);
     border-radius: 16px;
-    border: 1px solid rgba(46, 204, 113, 0.2);
+    border: 1px solid rgba(46, 204, 113, 0.1);
+    backdrop-filter: blur(5px);
 }
 
 .hero-section h1 {
     color: #2ecc71;
     font-size: 2.5rem;
     margin-bottom: 1rem;
+    text-shadow: 0 0 20px rgba(46, 204, 113, 0.2);
 }
 
 .hero-text {
@@ -252,11 +266,12 @@
     border: 1px solid rgba(46, 204, 113, 0.2);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
+    box-shadow: 0 0 15px rgba(46, 204, 113, 0.1);
 }
 
 .event-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(46, 204, 113, 0.2);
+    box-shadow: 0 0 20px rgba(46, 204, 113, 0.2);
 }
 
 .event-date {
@@ -338,6 +353,7 @@
     border-radius: 16px;
     padding: 1.5rem;
     border: 1px solid rgba(46, 204, 113, 0.2);
+    box-shadow: 0 0 15px rgba(46, 204, 113, 0.1);
 }
 
 .impact-metrics {
@@ -355,6 +371,7 @@
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 0 10px rgba(46, 204, 113, 0.08);
 }
 
 .metric-card:hover {
@@ -408,6 +425,7 @@
     margin-bottom: 0.5rem;
     transition: all 0.3s ease;
     transform: translateX(0);
+    box-shadow: 0 0 12px rgba(46, 204, 113, 0.08);
 }
 
 .contributor:hover {
@@ -464,6 +482,7 @@
     background: rgba(255, 255, 255, 0.05);
     padding: 1rem;
     border-radius: 8px;
+    box-shadow: 0 0 12px rgba(46, 204, 113, 0.08);
 }
 
 .milestone-progress {
@@ -480,6 +499,7 @@
     background: #2ecc71;
     border-radius: 4px;
     transition: width 0.3s ease;
+    box-shadow: inset 0 0 8px rgba(46, 204, 113, 0.1);
 }
 
 .progress-text {
@@ -722,7 +742,42 @@ document.addEventListener('DOMContentLoaded', function() {
 // Add click handlers for register buttons
 document.querySelectorAll('.btn-register').forEach(button => {
     button.addEventListener('click', function() {
-        alert('Registration feature coming soon!');
+        const event = this.dataset.event;
+        const co2Savings = parseInt(this.dataset.co2);
+        
+        let impactMessage = '';
+        
+        switch(event) {
+            case 'tree-planting':
+                impactMessage = `Amazing! By participating in this tree planting drive:\n\n` +
+                              `🌳 You'll help plant part of ${this.dataset.trees} trees\n` +
+                              `🌱 These trees will absorb ~${co2Savings} kg of CO₂ per year\n` +
+                              `🌍 That's equivalent to taking 1 car off the road for 3 months!`;
+                break;
+                
+            case 'eco-workshop':
+                impactMessage = `Great choice! Through this workshop:\n\n` +
+                              `📚 You'll learn ${this.dataset.practices} sustainable practices\n` +
+                              `🌱 Implementing these can save ~${co2Savings} kg of CO₂ per year\n` +
+                              `🌍 That's like planting 11 trees!`;
+                break;
+                
+            case 'beach-cleanup':
+                impactMessage = `Thank you for joining the cleanup!\n\n` +
+                              `🌊 You'll help clean ${this.dataset.area} miles of beach\n` +
+                              `🌱 Preventing ~${co2Savings} kg of CO₂ from ocean pollution\n` +
+                              `🌍 Equivalent to recycling 1,000 plastic bottles!`;
+                break;
+                
+            case 'solar-workshop':
+                impactMessage = `Excellent choice! In this workshop:\n\n` +
+                              `⚡ You'll learn about ${this.dataset.energy}kWh energy savings\n` +
+                              `🌱 Potential to save ~${co2Savings} kg of CO₂ per year\n` +
+                              `🌍 Like taking 50 LED bulbs off the grid!`;
+                break;
+        }
+        
+        alert(impactMessage);
     });
 });
 

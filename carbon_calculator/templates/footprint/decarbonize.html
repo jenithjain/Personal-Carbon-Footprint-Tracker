@@ -239,12 +239,13 @@ document.addEventListener('DOMContentLoaded', function() {
     justify-content: center;
     gap: 0.5rem;
     margin-top: 1rem;
+    box-shadow: 0 0 15px rgba(46, 204, 113, 0.15);
 }
 
 .calculate-btn:hover {
     background: #27ae60;
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+    box-shadow: 0 4px 20px rgba(46, 204, 113, 0.25);
 }
 
 .map-results-container {
@@ -267,6 +268,7 @@ document.addEventListener('DOMContentLoaded', function() {
     z-index: 1;
     visibility: visible !important;
     display: block !important;
+    box-shadow: 0 0 15px rgba(46, 204, 113, 0.1);
 }
 
 .results-section {
@@ -276,8 +278,9 @@ document.addEventListener('DOMContentLoaded', function() {
     border: 1px solid rgba(46, 204, 113, 0.2);
     overflow-y: auto;
     height: 100%;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    box-shadow: 0 0 15px rgba(46, 204, 113, 0.1);
 }
 
 .results-section::-webkit-scrollbar {
@@ -290,6 +293,13 @@ document.addEventListener('DOMContentLoaded', function() {
     padding: 1rem;
     margin-bottom: 1rem;
     border: 1px solid rgba(46, 204, 113, 0.2);
+    box-shadow: 0 0 12px rgba(46, 204, 113, 0.08);
+    transition: all 0.3s ease;
+}
+
+.route-card:hover {
+    box-shadow: 0 0 20px rgba(46, 204, 113, 0.15);
+    transform: translateY(-2px);
 }
 
 .route-card h4 {
@@ -330,10 +340,12 @@ document.addEventListener('DOMContentLoaded', function() {
     gap: 0.5rem;
     margin-top: 0.5rem;
     transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(46, 204, 113, 0.08);
 }
 
 .location-btn:hover {
     background: rgba(46, 204, 113, 0.2);
+    box-shadow: 0 0 15px rgba(46, 204, 113, 0.15);
 }
 
 .map-marker {

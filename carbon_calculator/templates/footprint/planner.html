@@ -150,6 +150,30 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Environmental Events Section -->
+            <div class="events-section">
+                <h2 class="events-title">Environmental Events</h2>
+                <p class="events-subtitle">Join us in making a difference through these upcoming eco-friendly events</p>
+                
+                <div class="events-grid">
+                    <div class="event-card">
+                        <div class="event-date">
+                            <span class="date">15</span>
+                            <span class="month">MAY</span>
+                        </div>
+                        <div class="event-details">
+                            <h3>Beach Cleanup Drive</h3>
+                            <p>Join our community in cleaning local beaches</p>
+                            <div class="event-meta">
+                                <span><i class="fas fa-map-marker-alt"></i> Bondi Beach</span>
+                                <span><i class="fas fa-clock"></i> 9:00 AM</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ... other event cards ... -->
+                </div>
+            </div>
         </div>
     </div>
 
@@ -383,6 +407,40 @@ input, select {
     .form-row {
         grid-template-columns: 1fr;
     }
+}
+
+.events-section {
+    padding: 2rem 0;
+}
+
+.events-title {
+    color: var(--light-text);
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.events-subtitle {
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem 0;
+}
+
+.event-card {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(46, 204, 113, 0.2);
 }
 </style>
 

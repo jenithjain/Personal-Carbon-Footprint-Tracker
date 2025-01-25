@@ -179,33 +179,24 @@
             }
         }
 
-        .eco-chat-link {
-            color: #2ecc71 !important;
+        .eco-chat-link, .ai-scanner-link {
+            color: var(--light-text) !important;
             font-weight: 500;
             padding: 8px 15px;
-            border: 1px solid #2ecc71;
-            border-radius: 4px;
             transition: all 0.3s ease;
+            background: transparent;
+            text-decoration: none;
         }
 
-        .eco-chat-link:hover {
-            background: #2ecc71;
-            color: #000 !important;
+        .eco-chat-link:hover, .ai-scanner-link:hover {
+            color: var(--green-accent) !important;
+            transform: translateY(-2px);
         }
 
-        .chatbot-link {
-            color: #2ecc71 !important;
-            font-weight: 500;
-            padding: 8px 15px;
-            border: 1px solid #2ecc71;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            margin-right: 10px;
-        }
-
-        .chatbot-link:hover {
-            background: #2ecc71;
-            color: #000 !important;
+        .nav-special-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
         }
 
         .navbar {
@@ -281,16 +272,18 @@
                     <a href="#contact">Contact</a>
                     <a href="{% url 'footprint:login' %}" class="nav-cta">Sign In</a>
                 {% endif %}
-                <a href="https://nakshjainsonigara-cv-streamlit-scanner-gmzbw4.streamlit.app/" 
-                   target="_blank" 
-                   class="chatbot-link">
-                    <span>AI Scanner</span>
-                </a>
-                <a href="https://ecobotc.streamlit.app/" 
-                   target="_blank" 
-                   class="eco-chat-link">
-                    <span>Eco Chat</span>
-                </a>
+                <div class="nav-special-links">
+                    <a href="https://nakshjainsonigara-cv-streamlit-scanner-gmzbw4.streamlit.app/" 
+                       target="_blank" 
+                       class="ai-scanner-link">
+                        <span>AI Scanner</span>
+                    </a>
+                    <a href="https://ecobotc.streamlit.app/" 
+                       target="_blank" 
+                       class="eco-chat-link">
+                        <span>Eco Chat</span>
+                    </a>
+                </div>
             </div>
         </div>
     </nav>

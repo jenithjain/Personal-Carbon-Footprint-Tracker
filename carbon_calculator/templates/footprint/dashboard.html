@@ -190,38 +190,82 @@ body {
     );
 }
 
-/* Card Background Style */
+/* Reduced Card Background Style with Minimal Neon Shadows */
 .quick-stat, .chart-card, .achievement-card, .feature-card, .form-card, .notification-card {
     background: linear-gradient(165deg, 
         rgba(0, 15, 3, 0.95) 0%,
         rgba(0, 8, 0, 0.98) 100%
     );
-    border: 1px solid rgba(46, 204, 113, 0.2);
+    border: 1px solid rgba(46, 204, 113, 0.15);
     border-radius: 24px;
     padding: 1.8rem;
     backdrop-filter: blur(10px);
     box-shadow: 
-        0 4px 24px -1px rgba(0, 0, 0, 0.2),
-        0 0 16px rgba(46, 204, 113, 0.1);
+        0 4px 15px -1px rgba(46, 204, 113, 0.1),
+        0 0 10px rgba(46, 204, 113, 0.1);
     transition: all 0.3s ease;
 }
-.scanner-container{
-    margin: 50px;
-}
-/* Glowing Border Effect */
+
+/* Subtle Hover Effect */
 .quick-stat:hover, .chart-card:hover, .achievement-card:hover, 
 .feature-card:hover, .form-card:hover, .notification-card:hover {
-    border-color: rgba(46, 204, 113, 0.4);
+    border-color: rgba(46, 204, 113, 0.3);
     box-shadow: 
-        0 8px 32px -1px rgba(0, 0, 0, 0.3),
-        0 0 24px rgba(46, 204, 113, 0.2);
+        0 6px 20px -1px rgba(46, 204, 113, 0.15),
+        0 0 15px rgba(46, 204, 113, 0.2);
     transform: translateY(-2px);
 }
 
-/* Glowing Elements */
+/* Minimal Progress Bar Effect */
+.progress-bar {
+    background: rgba(46, 204, 113, 0.1);
+    border: 1px solid rgba(46, 204, 113, 0.2);
+    height: 10px;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 0 8px rgba(46, 204, 113, 0.1);
+}
+
+.progress {
+    background: linear-gradient(90deg, 
+        rgba(46, 204, 113, 0.8),
+        rgba(46, 204, 113, 1)
+    );
+    height: 100%;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(46, 204, 113, 0.2);
+}
+
+/* Subtle Achievement Cards */
+.achievement-card {
+    box-shadow: 
+        0 4px 15px -1px rgba(46, 204, 113, 0.1),
+        0 0 10px rgba(46, 204, 113, 0.1);
+}
+
+.achievement-card:hover {
+    box-shadow: 
+        0 6px 20px -1px rgba(46, 204, 113, 0.15),
+        0 0 15px rgba(46, 204, 113, 0.2);
+}
+
+/* Minimal Prediction Cards */
+.prediction-card {
+    box-shadow: 
+        0 4px 15px -1px rgba(46, 204, 113, 0.1),
+        0 0 10px rgba(46, 204, 113, 0.1);
+}
+
+.prediction-card:hover {
+    box-shadow: 
+        0 6px 20px -1px rgba(46, 204, 113, 0.15),
+        0 0 15px rgba(46, 204, 113, 0.2);
+}
+
+/* Subtle Stats Values Glow */
 .stat-value {
     color: #2ecc71;
-    text-shadow: 0 0 15px rgba(46, 204, 113, 0.4);
+    text-shadow: 0 0 10px rgba(46, 204, 113, 0.2);
     font-size: 2rem;
     font-weight: 600;
     letter-spacing: -0.5px;
@@ -248,45 +292,6 @@ body {
 .form-control:focus, button:hover {
     border-color: rgba(46, 204, 113, 0.6);
     box-shadow: 0 0 15px rgba(46, 204, 113, 0.2);
-}
-
-/* Progress Bar Enhancement */
-.progress-bar {
-    background: rgba(46, 204, 113, 0.1);
-    border: 1px solid rgba(46, 204, 113, 0.3);
-    height: 10px;
-    border-radius: 6px;
-    overflow: hidden;
-}
-
-.progress {
-    background: linear-gradient(90deg, 
-        rgba(46, 204, 113, 0.8),
-        rgba(46, 204, 113, 1)
-    );
-    height: 100%;
-    border-radius: 6px;
-    box-shadow: 0 0 15px rgba(46, 204, 113, 0.3);
-}
-
-/* Chart Container Enhancement */
-canvas {
-    background: rgba(0, 20, 0, 0.3);
-    border-radius: 16px;
-    padding: 1rem;
-    border: 1px solid rgba(46, 204, 113, 0.2);
-}
-
-/* Maintain Helvetica Typography */
-body, h1, h2, h3, h4, h5, h6, p, span, div {
-    font-family: var(--main-font);
-}
-
-.chart-card h3 {
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: #2ecc71;
-    text-shadow: 0 0 10px rgba(46, 204, 113, 0.3);
 }
 
 /* Grid Layout */
