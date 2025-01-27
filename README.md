@@ -37,3 +37,8 @@ Track and reduce your carbon footprint with AI! This project combines machine le
 1. Clone the repo:
    ```bash
    git clone https://github.com/yourusername/carbon-tracker.git
+2.run server 
+   ```bash
+   python manage.py runserver
+
+   
