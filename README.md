@@ -32,6 +32,8 @@ Track and reduce your carbon footprint with AI! This project combines machine le
 - **AI/ML**: Custom models for product scanning (TensorFlow/PyTorch), NLP for chatbot
 - **Database**: PostgreSQL/SQLite
 - **APIs**: Carbon data sources, image recognition APIs
+  
+## Demo video
 
 ## ⚙️ Installation
 1. Clone the repo:
@@ -40,5 +42,7 @@ Track and reduce your carbon footprint with AI! This project combines machine le
 2.run server 
    ```bash
    python manage.py runserver
+
+
 
    
