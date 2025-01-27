@@ -3,7 +3,6 @@
 Track and reduce your carbon footprint with AI! This project combines machine learning, a chatbot assistant, and real-time analytics to help users make eco-friendly choices.
 
 
-
 ## 🚀 Features
 
 ### **1. AI-Powered Product Scanner**
@@ -42,7 +41,3 @@ Track and reduce your carbon footprint with AI! This project combines machine le
 2.run server 
    ```bash
    python manage.py runserver
-
-
-
-   
