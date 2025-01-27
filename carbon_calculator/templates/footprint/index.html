@@ -1,0 +1,39 @@
+{% extends 'footprint/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="home-container">
+    <h1>Welcome to EcoTracker</h1>
+    <p>Track your carbon footprint and make a difference!</p>
+    
+    {% if user.is_authenticated %}
+        <p>Welcome, {{ user.username }}!</p>
+        <a href="{% url 'footprint:my_home' %}">Go to Dashboard</a>
+    {% else %}
+        <p>Please <a href="{% url 'login' %}">login</a> to continue.</p>
+    {% endif %}
+</div>
+
+<style>
+    .home-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+        text-align: center;
+    }
+
+    h1 {
+        color: #2ecc71;
+        margin-bottom: 1rem;
+    }
+
+    a {
+        color: #2ecc71;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+</style>
+{% endblock %} 

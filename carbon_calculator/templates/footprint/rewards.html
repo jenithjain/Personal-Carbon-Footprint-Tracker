@@ -7,13 +7,61 @@
 
 {% block content %}
 <div class="rewards-container">
-    <!-- User Points Banner -->
-    <div class="points-banner">
-        <div class="points-display">
-            <i class="fas fa-leaf"></i>
-            <div class="points-info">
-                <span class="points-value">1,250</span>
-                <span class="points-label">Green Points Available</span>
+    <!-- Rewards Progress Section -->
+    <div class="rewards-progress-section">
+        <div class="progress-card">
+            <div class="level-info">
+                <div class="current-level">
+                    <span class="level-badge">Level 2</span>
+                    <h2>Eco Warrior</h2>
+                </div>
+                <div class="points-info">
+                    <div class="points-display">
+                        <i class="fas fa-leaf"></i>
+                        <div>
+                            <span class="points-value">1,250</span>
+                            <span class="points-label">Green Points</span>
+                        </div>
+                    </div>
+                    <div class="next-level">
+                        750 points to Level 3
+                    </div>
+                </div>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar">
+                    <div class="progress" style="width: 62.5%"></div>
+                </div>
+                <div class="progress-markers">
+                    <span class="marker achieved">L1</span>
+                    <span class="marker achieved">L2</span>
+                    <span class="marker">L3</span>
+                    <span class="marker">L4</span>
+                    <span class="marker">L5</span>
+                </div>
+            </div>
+            <div class="rewards-stats">
+                <div class="stat">
+                    <i class="fas fa-trophy"></i>
+                    <div>
+                        <span class="stat-value">12</span>
+                        <span class="stat-label">Rewards Claimed</span>
+                    </div>
+                </div>
+                <div class="stat">
+                    <i class="fas fa-tree"></i>
+                    <div>
+                        <span class="stat-value">45</span>
+                        <span class="stat-label">Trees Planted</span>
+                    </div>
+                </div>
+                <div class="stat">
+                    <i class="fas fa-medal"></i>
+                    <div>
+                        <span class="stat-value">8</span>
+                        <span class="stat-label">Achievements</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -29,83 +77,259 @@
 
     <!-- Rewards Grid -->
     <div class="rewards-grid">
-        <!-- Eco Product Card -->
+        <!-- Bamboo Toothbrush Set -->
         <div class="reward-card">
             <div class="reward-image">
-                <img src="{% static 'images/bamboo.png' %}" alt="Bamboo Utensil Set">
-                <div class="points-tag">500 points</div>
+                <div class="eco-score">Top Eco Score</div>
+                <img src="https://5.imimg.com/data5/SELLER/Default/2023/2/QR/KI/GP/44793768/bamboo-toothbrush-500x500.png" alt="Bamboo Toothbrush Set">
             </div>
             <div class="reward-info">
-                <h3>Bamboo Utensil Set</h3>
-                <p>Eco-friendly portable utensil set with carrying case</p>
-                <div class="emission-savings">
-                    <i class="fas fa-leaf"></i>
-                    <span>Saves ~2.5 kg CO₂ per year</span>
-                    <div class="savings-tooltip">
-                        Compared to disposable plastic utensils
+                <div class="category">Beauty & Personal Care</div>
+                <h3>Bamboo Toothbrush Set</h3>
+                
+                <div class="eco-rating">
+                    <span class="eco-icon">🌱</span>
+                    <span class="rating">9/10</span>
+                    <span class="impact">Reduces 0.5kg CO2/year</span>
+                </div>
+                
+                <p>Pack of 4 biodegradable bamboo toothbrushes. Eco-friendly alternative to plastic.</p>
+                
+                <div class="price-container">
+                    <div class="price">
+                        <span class="original-price">$13.99</span>
+                        <span class="current-price">$9.99</span>
+                    </div>
+                    <div class="points-savings">
+                        <span class="savings-icon">⭐</span>
+                        Save up to 15% with points
                     </div>
                 </div>
-                <button class="redeem-btn" data-product="bamboo-set" data-savings="2.5">Redeem Reward</button>
+                
+                <button class="buy-now-btn">Buy Now</button>
             </div>
         </div>
 
-        <!-- Plant Trees Card -->
+        <!-- Stainless Steel Water Bottle -->
         <div class="reward-card">
             <div class="reward-image">
-                <img src="{% static 'images/plant-tree.png' %}" alt="Plant Trees">
-                <div class="points-tag">300 points</div>
+                <img src="https://m.media-amazon.com/images/I/71wFyZlg58L.jpg" alt="Stainless Steel Water Bottle">
             </div>
             <div class="reward-info">
-                <h3>Plant a Tree</h3>
-                <p>We'll plant a tree in your name in affected areas</p>
-                <div class="emission-savings">
-                    <i class="fas fa-leaf"></i>
-                    <span>Absorbs ~22 kg CO₂ per year</span>
-                    <div class="savings-tooltip">
-                        Average CO₂ absorption per tree annually
+                <div class="category">Home & Living</div>
+                <h3>Stainless Steel Water Bottle</h3>
+                <div class="eco-rating">
+                    <span class="eco-icon">🌱</span>
+                    <span class="rating">8/10</span>
+                    <span class="impact">Reduces 2kg CO2/year</span>
+                </div>
+                <p>1L capacity, BPA-free, and keeps drinks cold for 24 hours or hot for 12 hours.</p>
+                <div class="price-container">
+                    <div class="price">
+                        <span class="current-price">$24.99</span>
+                    </div>
+                    <div class="points-savings">
+                        <span class="savings-icon">⭐</span>
+                        Save up to 10% with points
                     </div>
                 </div>
-                <button class="redeem-btn" data-product="tree" data-savings="22">Plant Now</button>
+                <button class="buy-now-btn">Buy Now</button>
             </div>
         </div>
 
-        <!-- Eco Fashion Card -->
+        <!-- Organic Cotton T-Shirt -->
         <div class="reward-card">
             <div class="reward-image">
-                <img src="{% static 'images/eco-tshirt.jpg' %}" alt="Eco T-Shirt">
-                <div class="points-tag">800 points</div>
+                <img src="{% static 'images/eco-tshirt.jpg' %}" alt="Organic Cotton T-Shirt">
             </div>
             <div class="reward-info">
-                <h3>Recycled Cotton T-Shirt</h3>
-                <p>100% recycled cotton t-shirt with eco-friendly dyes</p>
-                <div class="emission-savings">
-                    <i class="fas fa-leaf"></i>
-                    <span>Saves ~6.5 kg CO₂</span>
-                    <div class="savings-tooltip">
-                        Compared to new cotton t-shirt production
+                <div class="category">Fashion</div>
+                <h3>Organic Cotton T-Shirt</h3>
+                <div class="eco-rating">
+                    <span class="eco-icon">🌱</span>
+                    <span class="rating">7/10</span>
+                    <span class="impact">Reduces 1.5kg CO2/year</span>
+                </div>
+                <p>100% organic cotton, fair trade certified. Available in various colors and sizes.</p>
+                <div class="price-container">
+                    <div class="price">
+                        <span class="current-price">$19.99</span>
+                    </div>
+                    <div class="points-savings">
+                        <span class="savings-icon">⭐</span>
+                        Save up to 20% with points
                     </div>
                 </div>
-                <button class="redeem-btn" data-product="eco-tshirt" data-savings="6.5">Redeem Reward</button>
+                <button class="buy-now-btn">Buy Now</button>
             </div>
         </div>
 
-        <!-- Solar Charger Card -->
+        <!-- Reusable Produce Bags -->
         <div class="reward-card">
             <div class="reward-image">
-                <img src="{% static 'images/solar-charger.jpeg' %}" alt="Solar Charger">
-                <div class="points-tag">1000 points</div>
+                <div class="eco-score">Best Seller</div>
+                <img src="https://m.media-amazon.com/images/I/81M6zDA5snL._AC_UY1100_.jpg" alt="Reusable Produce Bags">
             </div>
             <div class="reward-info">
-                <h3>Portable Solar Charger</h3>
-                <p>10000mAh solar-powered portable charger</p>
-                <div class="emission-savings">
-                    <i class="fas fa-leaf"></i>
-                    <span>Saves ~8.2 kg CO₂ per year</span>
-                    <div class="savings-tooltip">
-                        Compared to grid-powered charging
+                <div class="category">Shopping</div>
+                <h3>Reusable Produce Bags</h3>
+                <div class="eco-rating">
+                    <span class="eco-icon">🌱</span>
+                    <span class="rating">9/10</span>
+                    <span class="impact">Reduces 3kg CO2/year</span>
+                </div>
+                <p>Set of 5 mesh bags for fruits and vegetables. Washable and durable.</p>
+                <div class="price-container">
+                    <div class="price">
+                        <span class="original-price">$18.99</span>
+                        <span class="current-price">$14.99</span>
+                    </div>
+                    <div class="points-savings">
+                        <span class="savings-icon">⭐</span>
+                        Save up to 12% with points
                     </div>
                 </div>
-                <button class="redeem-btn" data-product="solar-charger" data-savings="8.2">Redeem Reward</button>
+                <button class="buy-now-btn">Buy Now</button>
+            </div>
+        </div>
+
+        <!-- Solar Power Bank -->
+        <div class="reward-card">
+            <div class="reward-image">
+                <div class="eco-score">New Arrival</div>
+                <img src="https://callmateindia.com/cdn/shop/products/1_3119d08b-d8ac-4638-bb9a-1f875093602b.jpg?v=1721738926&width=2048" alt="Solar Power Bank">
+            </div>
+            <div class="reward-info">
+                <div class="category">Tech & Gadgets</div>
+                <h3>Solar Power Bank</h3>
+                <div class="eco-rating">
+                    <span class="eco-icon">🌱</span>
+                    <span class="rating">8/10</span>
+                    <span class="impact">Reduces 4kg CO2/year</span>
+                </div>
+                <p>20000mAh capacity with solar charging capability. Includes LED light.</p>
+                <div class="price-container">
+                    <div class="price">
+                        <span class="original-price">$45.99</span>
+                        <span class="current-price">$39.99</span>
+                    </div>
+                    <div class="points-savings">
+                        <span class="savings-icon">⭐</span>
+                        Save up to 15% with points
+                    </div>
+                </div>
+                <button class="buy-now-btn">Buy Now</button>
+            </div>
+        </div>
+
+        <!-- Compost Bin -->
+        <div class="reward-card">
+            <div class="reward-image">
+                <img src="https://images-cdn.ubuy.com.sa/6469f944331f76392b469459-goplus-compost-bin-dual-chamber-34-5.jpg" alt="Kitchen Compost Bin">
+            </div>
+            <div class="reward-info">
+                <div class="category">Home & Garden</div>
+                <h3>Kitchen Compost Bin</h3>
+                <div class="eco-rating">
+                    <span class="eco-icon">🌱</span>
+                    <span class="rating">8/10</span>
+                    <span class="impact">Reduces 5kg CO2/year</span>
+                </div>
+                <p>Stainless steel 1.3-gallon container with charcoal filter to eliminate odors.</p>
+                <div class="price-container">
+                    <div class="price">
+                        <span class="original-price">$34.99</span>
+                        <span class="current-price">$29.99</span>
+                    </div>
+                    <div class="points-savings">
+                        <span class="savings-icon">⭐</span>
+                        Save up to 10% with points
+                    </div>
+                </div>
+                <button class="buy-now-btn">Buy Now</button>
+            </div>
+        </div>
+
+        <!-- Bamboo Cutlery Set -->
+        <div class="reward-card">
+            <div class="reward-image">
+                <img src="https://thebamboobae.com/cdn/shop/products/17-1.jpg?v=1663754032" alt="Bamboo Cutlery Set">
+            </div>
+            <div class="reward-info">
+                <div class="category">Dining</div>
+                <h3>Bamboo Cutlery Set</h3>
+                <div class="eco-rating">
+                    <span class="eco-icon">🌱</span>
+                    <span class="rating">7/10</span>
+                    <span class="impact">Reduces 1kg CO2/year</span>
+                </div>
+                <p>Portable set includes fork, knife, spoon, and chopsticks with carrying case.</p>
+                <div class="price-container">
+                    <div class="price">
+                        <span class="current-price">$12.99</span>
+                    </div>
+                    <div class="points-savings">
+                        <span class="savings-icon">⭐</span>
+                        Save up to 8% with points
+                    </div>
+                </div>
+                <button class="buy-now-btn">Buy Now</button>
+            </div>
+        </div>
+
+        <!-- Beeswax Food Wraps -->
+        <div class="reward-card">
+            <div class="reward-image">
+                <div class="eco-score">Staff Pick</div>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVbSxRRRpHYBHQfiChx3Mj0Rkrup_KNpWgdQ&s" alt="Beeswax Food Wraps">
+            </div>
+            <div class="reward-info">
+                <div class="category">Kitchen</div>
+                <h3>Beeswax Food Wraps</h3>
+                <div class="eco-rating">
+                    <span class="eco-icon">🌱</span>
+                    <span class="rating">9/10</span>
+                    <span class="impact">Reduces 2.5kg CO2/year</span>
+                </div>
+                <p>Set of 3 reusable food wraps. Natural alternative to plastic wrap.</p>
+                <div class="price-container">
+                    <div class="price">
+                        <span class="original-price">$22.99</span>
+                        <span class="current-price">$18.99</span>
+                    </div>
+                    <div class="points-savings">
+                        <span class="savings-icon">⭐</span>
+                        Save up to 15% with points
+                    </div>
+                </div>
+                <button class="buy-now-btn">Buy Now</button>
+            </div>
+        </div>
+
+        <!-- Recycled Notebook -->
+        <div class="reward-card">
+            <div class="reward-image">
+                <img src="https://www.recycle.green/cdn/shop/products/MyPost_48_1_1024x1024.png?v=1628578750" alt="Recycled Paper Notebook">
+            </div>
+            <div class="reward-info">
+                <div class="category">Stationery</div>
+                <h3>Recycled Paper Notebook</h3>
+                <div class="eco-rating">
+                    <span class="eco-icon">🌱</span>
+                    <span class="rating">8/10</span>
+                    <span class="impact">Reduces 0.8kg CO2/year</span>
+                </div>
+                <p>100% recycled paper, 160 pages. Includes seed paper bookmark.</p>
+                <div class="price-container">
+                    <div class="price">
+                        <span class="current-price">$8.99</span>
+                    </div>
+                    <div class="points-savings">
+                        <span class="savings-icon">⭐</span>
+                        Save up to 5% with points
+                    </div>
+                </div>
+                <button class="buy-now-btn">Buy Now</button>
             </div>
         </div>
     </div>
@@ -121,6 +345,208 @@
 * {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+}
+
+:root {
+    --card-bg: rgba(0, 15, 2, 0.85);
+    --card-border: rgba(46, 204, 113, 0.2);
+    --card-glow: rgba(46, 204, 113, 0.15);
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --accent-green: #2ecc71;
+}
+
+/* Enhanced Card Styling */
+.reward-card {
+    background: linear-gradient(165deg, 
+        rgba(0, 15, 3, 0.95) 0%,
+        rgba(0, 8, 0, 0.98) 100%
+    );
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 4px 15px -1px rgba(46, 204, 113, 0.1),
+        0 0 10px rgba(46, 204, 113, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reward-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(46, 204, 113, 0.4);
+    box-shadow: 
+        0 8px 32px -1px rgba(0, 0, 0, 0.3),
+        0 0 24px rgba(46, 204, 113, 0.2);
+}
+
+/* Image Container */
+.reward-image {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    background: rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.reward-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.reward-card:hover .reward-image img {
+    transform: scale(1.05);
+}
+
+/* Eco Score Badge */
+.eco-score {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: rgba(46, 204, 113, 0.9);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    color: white;
+    font-weight: 500;
+    box-shadow: 0 2px 10px rgba(46, 204, 113, 0.3);
+    z-index: 1;
+}
+
+/* Product Info */
+.reward-info {
+    padding: 1.8rem;
+}
+
+.category {
+    color: var(--accent-green);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+h3 {
+    color: var(--text-primary);
+    margin: 0.5rem 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+/* Eco Rating */
+.eco-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin: 1rem 0;
+    padding: 0.8rem;
+    background: rgba(46, 204, 113, 0.1);
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.reward-card:hover .eco-rating {
+    background: rgba(46, 204, 113, 0.15);
+}
+
+.eco-icon {
+    font-size: 1.2rem;
+    filter: drop-shadow(0 0 8px rgba(46, 204, 113, 0.3));
+}
+
+.rating {
+    color: var(--accent-green);
+    font-weight: 600;
+}
+
+.impact {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Price Container */
+.price-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1.5rem 0;
+}
+
+.original-price {
+    color: var(--text-secondary);
+    text-decoration: line-through;
+    margin-right: 0.5rem;
+}
+
+.current-price {
+    color: var(--accent-green);
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-shadow: 0 0 10px rgba(46, 204, 113, 0.2);
+}
+
+/* Points Savings */
+.points-savings {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #ffd700;
+    font-size: 0.9rem;
+}
+
+/* Buy Button */
+.buy-now-btn {
+    width: 100%;
+    padding: 1rem;
+    background: var(--accent-green);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.buy-now-btn:hover {
+    background: #27ae60;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+}
+
+.buy-now-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.buy-now-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Responsive Grid */
+.rewards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+@media (max-width: 768px) {
+    .rewards-grid {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
 }
 
 .rewards-container {
@@ -195,77 +621,134 @@
 
 .rewards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-    margin-top: 2rem;
+    padding: 2rem;
 }
 
 .reward-card {
-    background: rgba(0, 15, 2, 0.85);
-    border-radius: 12px;
+    background: #000;
+    border-radius: 16px;
     overflow: hidden;
-    border: 1px solid rgba(46, 204, 113, 0.2);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
     transition: transform 0.3s ease;
 }
 
 .reward-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(46, 204, 113, 0.15);
 }
 
 .reward-image {
     position: relative;
     width: 100%;
-    height: 200px;  /* Fixed height */
-    background: rgba(255, 255, 255, 0.05);  /* Light background for images */
+    height: 250px;
+    background: #f5f5f5;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
 }
 
 .reward-image img {
-    width: 80%;  /* Reduced to 80% of container width */
-    height: 80%;  /* Reduced to 80% of container height */
-    object-fit: contain;  /* Changed to contain to prevent distortion */
-    padding: 1rem;
-    transition: transform 0.3s ease;
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
 }
 
-.reward-card:hover .reward-image img {
-    transform: scale(1.05);
-}
-
-.points-tag {
+.eco-score {
     position: absolute;
     top: 1rem;
-    right: 1rem;
-    background: rgba(46, 204, 113, 0.9);
+    left: 1rem;
+    background: #2ecc71;
+    color: white;
     padding: 0.5rem 1rem;
     border-radius: 20px;
-    color: white;
-    font-weight: bold;
     font-size: 0.9rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .reward-info {
     padding: 1.5rem;
-    text-align: center;
+    color: white;
+}
+
+.category {
+    color: #2ecc71;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
 }
 
 .reward-info h3 {
-    color: #2ecc71;
-    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.eco-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.eco-icon {
     font-size: 1.2rem;
 }
 
-.reward-info p {
-    color: rgba(255, 255, 255, 0.8);
+.rating {
+    font-weight: bold;
+}
+
+.impact {
+    color: #888;
     font-size: 0.9rem;
-    margin-bottom: 1.5rem;
-    line-height: 1.5;
+}
+
+.price-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1.5rem 0;
+}
+
+.price {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.original-price {
+    color: #888;
+    text-decoration: line-through;
+    font-size: 0.9rem;
+}
+
+.current-price {
+    color: #2ecc71;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.points-savings {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #ffd700;
+    font-size: 0.9rem;
+}
+
+.buy-now-btn {
+    width: 100%;
+    padding: 1rem;
+    background: #2ecc71;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.buy-now-btn:hover {
+    background: #27ae60;
 }
 
 .redeem-btn {
@@ -328,17 +811,236 @@
 @media (max-width: 768px) {
     .rewards-grid {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        padding: 1rem;
     }
-    
-    .reward-image {
-        height: 180px;
+}
+
+.rewards-progress-section {
+    margin-bottom: 2rem;
+    padding: 0 2rem;
+}
+
+.progress-card {
+    background: linear-gradient(165deg, 
+        rgba(0, 15, 3, 0.95) 0%,
+        rgba(0, 8, 0, 0.98) 100%
+    );
+    border: 1px solid rgba(46, 204, 113, 0.2);
+    border-radius: 16px;
+    padding: 2rem;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.level-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.current-level {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.level-badge {
+    background: #2ecc71;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    display: inline-block;
+}
+
+.current-level h2 {
+    margin: 0;
+    color: white;
+    font-size: 1.8rem;
+}
+
+.points-info {
+    text-align: right;
+}
+
+.points-display {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.points-display i {
+    font-size: 2rem;
+    color: #2ecc71;
+}
+
+.points-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2ecc71;
+    display: block;
+}
+
+.points-label {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.next-level {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.progress-bar-container {
+    margin-bottom: 2rem;
+}
+
+.progress-bar {
+    height: 8px;
+    background: rgba(46, 204, 113, 0.1);
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, #2ecc71, #27ae60);
+    border-radius: 4px;
+    transition: width 1s ease-in-out;
+    position: relative;
+}
+
+.progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.progress-markers {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.marker {
+    width: 24px;
+    height: 24px;
+    background: rgba(46, 204, 113, 0.1);
+    border: 1px solid rgba(46, 204, 113, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.marker.achieved {
+    background: #2ecc71;
+    color: white;
+    border-color: #2ecc71;
+}
+
+.rewards-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(46, 204, 113, 0.2);
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.stat i {
+    font-size: 1.5rem;
+    color: #2ecc71;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: white;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+@media (max-width: 768px) {
+    .level-info {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .points-info {
+        text-align: center;
+    }
+
+    .rewards-stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .stat {
+        justify-content: center;
     }
 }
 </style>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // Animate progress bar on load
+    const progress = document.querySelector('.progress');
+    progress.style.width = '0';
+    setTimeout(() => {
+        progress.style.width = '62.5%';
+    }, 500);
+
+    // Animate stats numbers
+    const statValues = document.querySelectorAll('.stat-value');
+    statValues.forEach(value => {
+        const finalValue = parseInt(value.textContent);
+        value.textContent = '0';
+        let current = 0;
+        const increment = finalValue / 50;
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= finalValue) {
+                clearInterval(timer);
+                value.textContent = finalValue;
+            } else {
+                value.textContent = Math.round(current);
+            }
+        }, 20);
+    });
+
     // Category button click handling
     const categoryBtns = document.querySelectorAll('.category-btn');
     categoryBtns.forEach(btn => {

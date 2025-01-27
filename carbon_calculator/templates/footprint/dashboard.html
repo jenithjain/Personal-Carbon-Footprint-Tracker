@@ -121,6 +121,121 @@
         </div>
     </div>
 
+    <!-- After the predictions section, add: -->
+
+    <!-- Carbon Offset Impact Visualizer -->
+    <div class="impact-visualizer-section" data-aos="fade-up">
+        <h3>Your Carbon Offset Impact</h3>
+        <div class="impact-grid">
+            <div class="impact-card">
+                <div class="impact-icon">🌳</div>
+                <h4>Trees Saved</h4>
+                <div class="impact-value counter">10</div>
+                <div class="impact-equivalent">
+                    Equivalent to planting a small forest
+                </div>
+                <button class="share-btn">
+                    <i class="fas fa-share-alt"></i> Share Impact
+                </button>
+            </div>
+
+            <div class="impact-card">
+                <div class="impact-icon">🚗</div>
+                <h4>Car Miles Offset</h4>
+                <div class="impact-value counter">1,000</div>
+                <div class="impact-equivalent">
+                    Equal to driving from NY to FL
+                </div>
+                <button class="share-btn">
+                    <i class="fas fa-share-alt"></i> Share Impact
+                </button>
+            </div>
+
+            <div class="impact-card">
+                <div class="impact-icon">💡</div>
+                <h4>Energy Saved</h4>
+                <div class="impact-value counter">500</div>
+                <div class="impact-unit">kWh</div>
+                <div class="impact-equivalent">
+                    Powers an average home for 2 months
+                </div>
+                <button class="share-btn">
+                    <i class="fas fa-share-alt"></i> Share Impact
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Carbon Offset Challenges -->
+    <div class="challenges-section" data-aos="fade-up">
+        <h3>Monthly Carbon Challenges</h3>
+        <div class="challenges-grid">
+            <div class="challenge-card active-challenge">
+                <div class="challenge-status">Active Challenge</div>
+                <div class="challenge-icon">🚲</div>
+                <h4>Bike to Work Week</h4>
+                <div class="challenge-progress">
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 65%"></div>
+                    </div>
+                    <span class="progress-text">65% Complete</span>
+                </div>
+                <div class="challenge-stats">
+                    <div class="stat">
+                        <span class="label">Your Rank</span>
+                        <span class="value">#5</span>
+                    </div>
+                    <div class="stat">
+                        <span class="label">CO₂ Saved</span>
+                        <span class="value">25kg</span>
+                    </div>
+                </div>
+                <div class="challenge-prize">
+                    <i class="fas fa-trophy"></i>
+                    Prize: 500 Green Points
+                </div>
+            </div>
+
+            <div class="challenge-card upcoming">
+                <div class="challenge-status">Starting Soon</div>
+                <div class="challenge-icon">♻️</div>
+                <h4>Zero Waste Challenge</h4>
+                <p>Starts in 5 days</p>
+                <div class="challenge-prize">
+                    <i class="fas fa-trophy"></i>
+                    Prize: Eco-friendly Product Bundle
+                </div>
+                <button class="remind-btn">
+                    <i class="fas fa-bell"></i> Remind Me
+                </button>
+            </div>
+
+            <div class="challenge-card leaderboard">
+                <h4>Top Performers</h4>
+                <div class="leaderboard-list">
+                    <div class="leaderboard-item">
+                        <span class="rank">1</span>
+                        <span class="name">EcoWarrior</span>
+                        <span class="score">120kg CO₂</span>
+                    </div>
+                    <div class="leaderboard-item">
+                        <span class="rank">2</span>
+                        <span class="name">GreenRider</span>
+                        <span class="score">95kg CO₂</span>
+                    </div>
+                    <div class="leaderboard-item">
+                        <span class="rank">3</span>
+                        <span class="name">BikeHero</span>
+                        <span class="score">82kg CO₂</span>
+                    </div>
+                </div>
+                <button class="view-all-btn">
+                    View Full Leaderboard
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Achievement Cards -->
     <div class="achievements-section" data-aos="fade-up">
         <h3 style="text-align: center; margin-bottom: 2rem;">Your Achievements</h3>
@@ -224,6 +339,7 @@ body {
     border-radius: 6px;
     overflow: hidden;
     box-shadow: 0 0 8px rgba(46, 204, 113, 0.1);
+    margin: 10px 0px;
 }
 
 .progress {
@@ -486,6 +602,10 @@ body {
     box-shadow: 0 0 15px rgba(46, 204, 113, 0.4);
 }
 
+
+.stat{
+    margin: 10px 0px;
+}
 /* Scanner Section Styles */
 .scanner-section {
     margin-top: 2rem;
@@ -628,6 +748,141 @@ body {
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
     margin-top: 1rem;
+}
+
+/* Impact Visualizer Styles */
+.impact-visualizer-section {
+    margin: 2rem 0;
+    padding: 1rem;
+}
+
+.impact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.impact-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.impact-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(46, 204, 113, 0.4);
+    box-shadow: 0 8px 32px rgba(46, 204, 113, 0.2);
+}
+
+.impact-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 8px rgba(46, 204, 113, 0.3));
+}
+
+.impact-value {
+    font-size: 2.5rem;
+    color: #2ecc71;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+
+.impact-equivalent {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 1rem 0;
+}
+
+/* Challenge Styles */
+.challenges-section {
+    margin: 2rem 0;
+    padding: 1rem;
+}
+
+.challenges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.challenge-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.challenge-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(46, 204, 113, 0.4);
+    box-shadow: 0 8px 32px rgba(46, 204, 113, 0.2);
+}
+
+.challenge-status {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.active-challenge .challenge-status {
+    background: rgba(46, 204, 113, 0.2);
+    color: #2ecc71;
+}
+
+.upcoming .challenge-status {
+    background: rgba(241, 196, 15, 0.2);
+    color: #f1c40f;
+}
+
+.challenge-icon {
+    font-size: 2rem;
+    margin: 1rem 0;
+}
+
+.challenge-progress {
+    margin: 1rem 0;
+}
+
+.leaderboard-list {
+    margin: 1rem 0;
+}
+
+.leaderboard-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8rem;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.rank {
+    color: #2ecc71;
+    font-weight: bold;
+}
+
+/* Button Styles */
+.share-btn, .remind-btn, .view-all-btn {
+    background: rgba(46, 204, 113, 0.1);
+    border: 1px solid rgba(46, 204, 113, 0.3);
+    color: #2ecc71;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 20px 0px;
+}
+
+.share-btn:hover, .remind-btn:hover, .view-all-btn:hover {
+    background: rgba(46, 204, 113, 0.2);
+    transform: translateY(-2px);
 }
 </style>
 

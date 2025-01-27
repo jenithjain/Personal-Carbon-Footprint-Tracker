@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carbon Calculator</title>
+    <title>EcoTrack</title>
     {% block extra_head %}{% endblock %}
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Spectral:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -256,7 +256,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="{% url 'footprint:landing' %}" class="nav-brand">
-                <span>🌍 Carbon Calculator</span>
+                <span>🌍 EcoTrack</span>
             </a>
             <div class="nav-links">
                 {% if user.is_authenticated %}

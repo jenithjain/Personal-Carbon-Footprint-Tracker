@@ -1,0 +1,1055 @@
+{% extends 'footprint/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="shop-header">
+        <h1 class="animate-fade-in">🌱 Eco Store</h1>
+        <p class="subtitle animate-slide-up">Sustainable Shopping, Better Future</p>
+    </div>
+
+    <div class="user-dashboard animate-fade-in">
+        <div class="user-info">
+            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png" alt="User Avatar" class="user-avatar">
+            <div class="user-details">
+                <h2>Welcome back, Eco Warrior!</h2>
+                <p>Your impact is growing. Keep it up!</p>
+            </div>
+        </div>
+        <div class="eco-impact">
+            <div class="impact-item">
+                <span class="impact-icon">🌳</span>
+                <span class="impact-value">50</span>
+                <span class="impact-label">Trees Saved</span>
+            </div>
+            <div class="impact-item">
+                <span class="impact-icon">💧</span>
+                <span class="impact-value">1000</span>
+                <span class="impact-label">Liters Water Saved</span>
+            </div>
+            <div class="impact-item">
+                <span class="impact-icon">🔋</span>
+                <span class="impact-value">200</span>
+                <span class="impact-label">kWh Energy Saved</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="rewards-section animate-slide-in">
+        <div class="rewards-banner">
+            <div class="rewards-info">
+                <div class="rewards-icon animate-bounce">🌟</div>
+                <div class="rewards-text">
+                    <h2>1250 Points Available</h2>
+                    <p>Every 100 points = 5% discount on your purchase</p>
+                </div>
+            </div>
+        </div>
+        <div class="rewards-progress">
+            <h3>Rewards Progress</h3>
+            <div class="progress-bar">
+                <div class="progress" style="width: 75%;"></div>
+            </div>
+            <p>You're 75% of the way to your next reward tier!</p>
+        </div>
+    </div>
+
+    <div class="achievements-section animate-fade-in">
+        <h2>Your Eco Achievements</h2>
+        <div class="achievements-grid">
+            <div class="achievement-card">
+                <div class="achievement-icon">🥇</div>
+                <h3>Top Recycler</h3>
+                <p>Recycled 100+ items</p>
+            </div>
+            <div class="achievement-card">
+                <div class="achievement-icon">🌱</div>
+                <h3>Green Thumb</h3>
+                <p>Purchased 10+ plant-based products</p>
+            </div>
+            <div class="achievement-card">
+                <div class="achievement-icon">⚡</div>
+                <h3>Energy Saver</h3>
+                <p>Bought 5+ energy-efficient items</p>
+            </div>
+            <div class="achievement-card locked">
+                <div class="achievement-icon">🌊</div>
+                <h3>Water Warrior</h3>
+                <p>Save 5000L of water (3000L to go)</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="filter-section animate-fade-in">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search eco-friendly products...">
+        </div>
+        <div class="filter-options">
+            <select id="categoryFilter">
+                <option value="">All Categories</option>
+                <option value="1">Home & Living</option>
+                <option value="2">Fashion</option>
+                <option value="3">Beauty & Personal Care</option>
+                <option value="4">Electronics</option>
+            </select>
+            <select id="sortFilter">
+                <option value="popular">Most Popular</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="eco-score">Eco Score</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="products-grid">
+        <div class="product-card animate-fade-in">
+            <div class="eco-badge animate-pulse">Top Eco Score</div>
+            <div class="product-image-wrapper">
+                <img src="https://www.cinoll.com/wp-content/uploads/2021/05/bamboo-toothbrushes-manfuacturer.jpg" alt="Bamboo Toothbrush" class="product-image animate-zoom-in">
+            </div>
+            <div class="product-details">
+                <div class="product-category">Beauty & Personal Care</div>
+                <h3 class="animate-slide-up">Bamboo Toothbrush Set</h3>
+                <div class="eco-score animate-fade-in">
+                    <span class="score">🌱 9/10</span>
+                    <div class="eco-impact">Reduces 0.5kg CO2/year</div>
+                </div>
+                <p class="product-description animate-slide-up">Pack of 4 biodegradable bamboo toothbrushes. Eco-friendly alternative to plastic.</p>
+                <div class="price-container animate-fade-in">
+                    <span class="original-price">$12.99</span>
+                    <span class="final-price">$9.99</span>
+                </div>
+                <div class="rewards-eligible animate-slide-up">
+                    <span class="points-icon">🌟</span>
+                    <span>Save up to 15% with points</span>
+                </div>
+                <button class="btn-buy animate-pulse" onclick="showBuyModal(1)">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="product-card animate-fade-in">
+            <div class="product-image-wrapper">
+                <img src="https://m.media-amazon.com/images/I/71wFyZlg58L.jpg" alt="Reusable Water Bottle" class="product-image animate-zoom-in">
+            </div>
+            <div class="product-details">
+                <div class="product-category">Home & Living</div>
+                <h3 class="animate-slide-up">Stainless Steel Water Bottle</h3>
+                <div class="eco-score animate-fade-in">
+                    <span class="score">🌱 8/10</span>
+                    <div class="eco-impact">Reduces 2kg CO2/year</div>
+                </div>
+                <p class="product-description animate-slide-up">1L capacity, BPA-free, and keeps drinks cold for 24 hours or hot for 12 hours.</p>
+                <div class="price-container animate-fade-in">
+                    <span class="final-price">$24.99</span>
+                </div>
+                <div class="rewards-eligible animate-slide-up">
+                    <span class="points-icon">🌟</span>
+                    <span>Save up to 10% with points</span>
+                </div>
+                <button class="btn-buy animate-pulse" onclick="showBuyModal(2)">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="product-card animate-fade-in">
+            <div class="product-image-wrapper">
+                <img src="https://cdn.sportsshoes.com/product/I/INO1705/INO1705_1000_1.jpg" alt="Organic Cotton T-Shirt" class="product-image animate-zoom-in">
+            </div>
+            <div class="product-details">
+                <div class="product-category">Fashion</div>
+                <h3 class="animate-slide-up">Organic Cotton T-Shirt</h3>
+                <div class="eco-score animate-fade-in">
+                    <span class="score">🌱 7/10</span>
+                    <div class="eco-impact">Reduces 1.5kg CO2/year</div>
+                </div>
+                <p class="product-description animate-slide-up">100% organic cotton, fair trade certified. Available in various colors and sizes.</p>
+                <div class="price-container animate-fade-in">
+                    <span class="final-price">$19.99</span>
+                </div>
+                <div class="rewards-eligible animate-slide-up">
+                    <span class="points-icon">🌟</span>
+                    <span>Save up to 20% with points</span>
+                </div>
+                <button class="btn-buy animate-pulse" onclick="showBuyModal(3)">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="product-card animate-fade-in">
+            <div class="eco-badge animate-pulse">Top Eco Score</div>
+            <div class="product-image-wrapper">
+                <img src="https://callmateindia.com/cdn/shop/products/1_3119d08b-d8ac-4638-bb9a-1f875093602b.jpg?v=1721738926&width=2048" alt="Solar Power Bank" class="product-image animate-zoom-in">
+            </div>
+            <div class="product-details">
+                <div class="product-category">Electronics</div>
+                <h3 class="animate-slide-up">Solar-Powered Portable Charger</h3>
+                <div class="eco-score animate-fade-in">
+                    <span class="score">🌱 9/10</span>
+                    <div class="eco-impact">Reduces 3kg CO2/year</div>
+                </div>
+                <p class="product-description animate-slide-up">10000mAh capacity, solar-powered, waterproof, and shockproof. Perfect for outdoor adventures.</p>
+                <div class="price-container animate-fade-in">
+                    <span class="original-price">$49.99</span>
+                    <span class="final-price">$39.99</span>
+                </div>
+                <div class="rewards-eligible animate-slide-up">
+                    <span class="points-icon">🌟</span>
+                    <span>Save up to 25% with points</span>
+                </div>
+                <button class="btn-buy animate-pulse" onclick="showBuyModal(4)">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="product-card animate-fade-in">
+            <div class="product-image-wrapper">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhD24zn8NT3oFHkFPKUEZOJ5Ftar4LSusNuQ&s" alt="Recycled Paper Notebook" class="product-image animate-zoom-in">
+            </div>
+            <div class="product-details">
+                <div class="product-category">Home & Living</div>
+                <h3 class="animate-slide-up">Recycled Paper Notebook</h3>
+                <div class="eco-score animate-fade-in">
+                    <span class="score">🌱 8/10</span>
+                    <div class="eco-impact">Reduces 0.8kg CO2/year</div>
+                </div>
+                <p class="product-description animate-slide-up">Made from 100% recycled paper. 200 pages, hardcover, and comes with a recycled pen.</p>
+                <div class="price-container animate-fade-in">
+                    <span class="final-price">$14.99</span>
+                </div>
+                <div class="rewards-eligible animate-slide-up">
+                    <span class="points-icon">🌟</span>
+                    <span>Save up to 15% with points</span>
+                </div>
+                <button class="btn-buy animate-pulse" onclick="showBuyModal(5)">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="product-card animate-fade-in">
+            <div class="product-image-wrapper">
+                <img src="https://m.media-amazon.com/images/I/61cQiWWtRML.jpg" alt="Eco-friendly Laundry Detergent" class="product-image animate-zoom-in">
+            </div>
+            <div class="product-details">
+                <div class="product-category">Home & Living</div>
+                <h3 class="animate-slide-up">Eco-friendly Laundry Detergent</h3>
+                <div class="eco-score animate-fade-in">
+                    <span class="score">🌱 8/10</span>
+                    <div class="eco-impact">Reduces 1.2kg CO2/year</div>
+                </div>
+                <p class="product-description animate-slide-up">Biodegradable, phosphate-free, and comes in a recyclable container. 64 loads per bottle.</p>
+                <div class="price-container animate-fade-in">
+                    <span class="final-price">$18.99</span>
+                </div>
+                <div class="rewards-eligible animate-slide-up">
+                    <span class="points-icon">🌟</span>
+                    <span>Save up to 20% with points</span>
+                </div>
+                <button class="btn-buy animate-pulse" onclick="showBuyModal(6)">Buy Now</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="purchaseModal" class="modal">
+    <div class="modal-content animate-fade-in">
+        <span class="close">&times;</span>
+        <h2 id="modalProductName"></h2>
+        <img id="modalProductImage" src="/placeholder.svg" alt="Product Image" class="modal-product-image">
+        <p id="modalEcoScore"></p>
+        <p>Price: <span id="modalPrice"></span></p>
+        <div class="points-slider">
+            <label for="pointsSlider">Use Reward Points:</label>
+            <input type="range" id="pointsSlider" min="0" max="1000" value="0">
+            <div class="points-info">
+                <span id="pointsUsed">0 points</span>
+                <span id="pointsDiscount">$0.00 saved</span>
+            </div>
+        </div>
+        <div class="purchase-summary">
+            <div class="summary-row">
+                <span>Subtotal:</span>
+                <span id="subtotal"></span>
+            </div>
+            <div class="summary-row">
+                <span>Points Discount:</span>
+                <span id="pointsDiscountTotal">-$0.00</span>
+            </div>
+            <div class="summary-row total">
+                <span>Total:</span>
+                <span id="total"></span>
+            </div>
+        </div>
+        <button onclick="completePurchase()" class="btn-buy">Complete Purchase</button>
+    </div>
+</div>
+
+<style>
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+        from { transform: translateY(20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes slideIn {
+        from { transform: translateX(-20px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+
+    @keyframes zoomIn {
+        from { transform: scale(1); }
+        to { transform: scale(1.05); }
+    }
+
+    .animate-fade-in {
+        animation: fadeIn 0.5s ease-out;
+    }
+
+    .animate-slide-up {
+        animation: slideUp 0.5s ease-out;
+    }
+
+    .animate-slide-in {
+        animation: slideIn 0.5s ease-out;
+    }
+
+    .animate-bounce {
+        animation: bounce 2s infinite;
+    }
+
+    .animate-pulse {
+        animation: pulse 2s infinite;
+    }
+
+    .animate-zoom-in {
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .animate-zoom-in:hover {
+        transform: scale(1.05);
+    }
+
+    :root {
+        --dark-bg: #000000;
+        --card-bg: #000000;
+        --text-primary: #ffffff;
+        --text-secondary: #ffffff;
+        --accent-green: #2ecc71;
+        --accent-hover: #2ecc71;
+        --border-color: #000000;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+        color: var(--text-primary);
+        background: var(--dark-bg);
+    }
+
+    .shop-header {
+        text-align: center;
+        margin-bottom: 2rem;
+        padding: 2rem 0;
+    }
+
+    .shop-header h1 {
+        color: var(--accent-green);
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .user-dashboard {
+        background: var(--card-bg);
+        border-radius: 15px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .user-info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .user-avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin-right: 1rem;
+    }
+
+    .user-details h2 {
+        margin: 0;
+        font-size: 1.5rem;
+    }
+
+    .eco-impact {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 1rem;
+    }
+
+    .impact-item {
+        text-align: center;
+    }
+
+    .impact-icon {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .impact-value {
+        font-size: 1.5rem;
+        font-weight: bold;
+        display: block;
+    }
+
+    .impact-label {
+        font-size: 0.9rem;
+    }
+
+    .rewards-section {
+        margin-bottom: 2rem;
+    }
+
+    .rewards-banner {
+        background: var(--card-bg);
+        padding: 1.5rem;
+        border-radius: 15px;
+        margin-bottom: 1rem;
+        border: 1px solid var(--accent-green);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .rewards-banner:hover {
+        transform: translateY(-5px);
+    }
+
+    .rewards-info {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .rewards-icon {
+        font-size: 2rem;
+    }
+
+    .rewards-progress {
+        background: var(--card-bg);
+        padding: 1.5rem;
+        border-radius: 15px;
+    }
+
+    .progress-bar {
+        background: rgba(255, 255, 255, 0.1);
+        height: 10px;
+        border-radius: 5px;
+        overflow: hidden;
+        margin: 1rem 0;
+    }
+
+    .progress {
+        background: var(--accent-green);
+        height: 100%;
+        border-radius: 5px;
+    }
+
+    .achievements-section {
+        background: var(--card-bg);
+        padding: 2rem;
+        border-radius: 15px;
+        margin-bottom: 2rem;
+    }
+
+    .achievements-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .achievement-card {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 1rem;
+        border-radius: 10px;
+        text-align: center;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .achievement-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .achievement-icon {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .achievement-card.locked {
+        opacity: 0.6;
+    }
+
+    .filter-section {
+        background: var(--card-bg);
+        padding: 1rem;
+        border-radius: 15px;
+        margin-bottom: 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+        justify-content: space-between;
+        transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .filter-section:hover {
+        box-shadow: 0 6px 12px rgba(46, 204, 113, 0.1);
+    }
+
+    .search-bar {
+        flex: 1;
+        min-width: 200px;
+    }
+
+    .filter-options {
+        display: flex;
+        gap: 0.8rem;
+        margin: 0px 20px 15px;
+    }
+
+    .search-bar input {
+        background: var(--dark-bg);
+        color: var(--text-primary);
+        border: 1px solid var(--border-color);
+        padding: 0.6rem 1rem;
+        border-radius: 8px;
+        width: 100%;
+        font-size: 0.9rem;
+        transition: border-color 0.3s ease-in-out;
+    }
+
+    .search-bar input:focus {
+        border-color: var(--accent-green);
+        outline: none;
+    }
+
+    .filter-options select {
+        background: var(--dark-bg);
+        color: var(--text-primary);
+        border: 1px solid var(--border-color);
+        padding: 0.4rem 0.8rem;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        width: auto;
+        min-width: 110px;
+        cursor: pointer;
+        transition: border-color 0.3s ease-in-out;
+    }
+
+    .filter-options select:focus {
+        border-color: var(--accent-green);
+        outline: none;
+    }
+
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+
+    .product-card {
+        background: var(--card-bg);
+        border-radius: 15px;
+        overflow: hidden;
+        border: 1px solid var(--border-color);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(76, 175, 80, 0.2);
+    }
+
+    .product-image-wrapper {
+        position: relative;
+        padding-top: 75%;
+        overflow: hidden;
+    }
+
+    .product-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .product-card:hover .product-image {
+        transform: scale(1.05);
+    }
+
+    .eco-badge {
+        background: #2ecc71;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        z-index: 1;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .product-card:hover .eco-badge {
+        transform: scale(1.1);
+    }
+
+    .product-details {
+        padding: 1.5rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .product-category {
+        color: var(--accent-green);
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .product-details h3 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+    }
+
+    .eco-score {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .eco-impact {
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+    }
+
+    .price-container {
+        margin-top: auto;
+        margin-bottom: 0.5rem;
+    }
+
+    .original-price {
+        text-decoration: line-through;
+        color: var(--text-secondary);
+        margin-right: 0.5rem;
+    }
+
+    .final-price {
+        font-weight: bold;
+        color: var(--accent-green);
+    }
+
+    .rewards-eligible {
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .btn-buy {
+        background: var(--accent-green);
+        color: white;
+        border: none;
+        padding: 0.8rem;
+        border-radius: 8px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.3s ease;
+        margin-top: 0.5rem;
+    }
+
+    .btn-buy:hover {
+        background: var(--accent-hover);
+        transform: translateY(-2px);
+    }
+
+    /* Modal Styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    .modal-content {
+        background: var(--card-bg);
+        margin: 10% auto;
+        padding: 2rem;
+        border: 1px solid var(--accent-green);
+        border-radius: 15px;
+        max-width: 500px;
+        color: var(--text-primary);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .modal-content:hover {
+        transform: scale(1.02);
+    }
+
+    .close {
+        color: var(--text-secondary);
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: var(--accent-green);
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .modal-product-image {
+        width: 100%;
+        max-height: 300px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+    }
+
+    .points-slider {
+        margin: 1rem 0;
+    }
+
+    .points-slider input[type="range"] {
+        width: 100%;
+        height: 8px;
+        background: var(--dark-bg);
+        border-radius: 4px;
+        outline: none;
+        transition: background 0.3s ease-in-out;
+    }
+
+    .points-slider input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        background: var(--accent-green);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .points-slider input[type="range"]::-webkit-slider-thumb:hover {
+        transform: scale(1.1);
+    }
+
+    .points-info {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .purchase-summary {
+        margin: 1.5rem 0;
+        padding: 1rem;
+        background: rgba(46, 204, 113, 0.1);
+        border-radius: 8px;
+    }
+
+    .summary-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+    }
+
+    .summary-row.total {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 0.5rem;
+        margin-top: 0.5rem;
+        font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            padding: 1rem;
+        }
+
+        .products-grid {
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1rem;
+        }
+
+        .filter-section {
+            flex-direction: column;
+        }
+
+        .filter-options {
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .modal-content {
+            margin: 20% auto;
+            width: 90%;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .products-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<script>
+let currentProduct = null;
+
+function showBuyModal(productId) {
+    // Simulating fetch with mock data
+    const mockProducts = [
+        { id: 1, name: "Bamboo Toothbrush Set", image_url: "https://www.cinoll.com/wp-content/uploads/2021/05/bamboo-toothbrushes-manfuacturer.jpg", eco_score: 9, price: 9.99 },
+        { id: 2, name: "Stainless Steel Water Bottle", image_url: "https://via.placeholder.com/300x300?text=Reusable+Water+Bottle", eco_score: 8, price: 24.99 },
+        { id: 3, name: "Organic Cotton T-Shirt", image_url: "https://via.placeholder.com/300x300?text=Organic+Cotton+Tee", eco_score: 7, price: 19.99 },
+        { id: 4, name: "Solar-Powered Portable Charger", image_url: "https://via.placeholder.com/300x300?text=Solar+Power+Bank", eco_score: 9, price: 39.99 },
+        { id: 5, name: "Recycled Paper Notebook", image_url: "https://via.placeholder.com/300x300?text=Recycled+Notebook", eco_score: 8, price: 14.99 },
+        { id: 6, name: "Eco-friendly Laundry Detergent", image_url: "https://via.placeholder.com/300x300?text=Eco+Laundry+Detergent", eco_score: 8, price: 18.99 }
+    ];
+
+    const product = mockProducts.find(p => p.id === productId);
+    
+    if (product) {
+        currentProduct = product;
+        document.getElementById('modalProductImage').src = product.image_url;
+        document.getElementById('modalProductName').textContent = product.name;
+        document.getElementById('modalEcoScore').textContent = `🌱 ${product.eco_score}/10`;
+        document.getElementById('modalPrice').textContent = `$${product.price.toFixed(2)}`;
+        document.getElementById('subtotal').textContent = `$${product.price.toFixed(2)}`;
+        document.getElementById('total').textContent = `$${product.price.toFixed(2)}`;
+        
+        // Set up points slider
+        const slider = document.getElementById('pointsSlider');
+        slider.max = Math.min(1250, product.price * 20); // Max 100% discount, assuming 1250 available points
+        slider.value = 0;
+        updatePointsDiscount();
+        
+        const modal = document.getElementById('purchaseModal');
+        modal.style.display = 'block';
+        setTimeout(() => {
+            modal.style.opacity = '1';
+        }, 10);
+    }
+}
+
+function updatePointsDiscount() {
+    const points = parseInt(document.getElementById('pointsSlider').value);
+    const discount = (points / 20).toFixed(2); // 20 points = $1 discount
+    const total = (currentProduct.price - discount).toFixed(2);
+    
+    document.getElementById('pointsUsed').textContent = `${points} points`;
+    document.getElementById('pointsDiscount').textContent = `$${discount} saved`;
+    document.getElementById('pointsDiscountTotal').textContent = `-$${discount}`;
+    document.getElementById('total').textContent = `$${total}`;
+}
+
+function completePurchase() {
+    const points = parseInt(document.getElementById('pointsSlider').value);
+    
+    // Simulating purchase
+    alert(`Purchase successful! You used ${points} points and saved $${(points / 20).toFixed(2)}. Thank you for shopping sustainably!`);
+    closeModal();
+}
+
+document.getElementById('pointsSlider').addEventListener('input', updatePointsDiscount);
+
+// Close modal functions
+function closeModal() {
+    const modal = document.getElementById('purchaseModal');
+    modal.style.opacity = '0';
+    setTimeout(() => {
+        modal.style.display = 'none';
+    }, 300);
+}
+
+document.querySelector('.close').onclick = closeModal;
+
+window.onclick = function(event) {
+    const modal = document.getElementById('purchaseModal');
+    if (event.target === modal) {
+        closeModal();
+    }
+}
+
+// Search and filter functionality
+document.getElementById('searchInput').addEventListener('input', debounce(function(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    filterProducts(searchTerm);
+}, 300));
+
+document.getElementById('categoryFilter').addEventListener('change', function(e) {
+    const category = e.target.value;
+    filterProducts('', category);
+});
+
+document.getElementById('sortFilter').addEventListener('change', function(e) {
+    const sortBy = e.target.value;
+    sortProducts(sortBy);
+});
+
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+function filterProducts(searchTerm = '', category = '') {
+    const productCards = document.querySelectorAll('.product-card');
+    productCards.forEach(card => {
+        const productName = card.querySelector('h3').textContent.toLowerCase();
+        const productCategory = card.querySelector('.product-category').textContent.toLowerCase();
+        const matchesSearch = productName.includes(searchTerm);
+        const matchesCategory = category === '' || productCategory === category.toLowerCase();
+        
+        if (matchesSearch && matchesCategory) {
+            card.style.display = 'block';
+            card.classList.add('animate-fade-in');
+        } else {
+            card.style.display = 'none';
+            card.classList.remove('animate-fade-in');
+        }
+    });
+}
+
+function sortProducts(sortBy) {
+    const productsGrid = document.querySelector('.products-grid');
+    const productCards = Array.from(productsGrid.children);
+    
+    productCards.sort((a, b) => {
+        const aValue = getProductValue(a, sortBy);
+        const bValue = getProductValue(b, sortBy);
+        
+        if (sortBy === 'price-low') {
+            return aValue - bValue;
+        } else {
+            return bValue - aValue;
+        }
+    });
+    
+    productCards.forEach(card => productsGrid.appendChild(card));
+}
+
+function getProductValue(productCard, sortBy) {
+    switch (sortBy) {
+        case 'popular':
+            // Assuming a data attribute for popularity, fallback to eco-score
+            return parseFloat(productCard.dataset.popularity || productCard.querySelector('.score').textContent.match(/\d+/)[0]);
+        case 'price-low':
+        case 'price-high':
+            return parseFloat(productCard.querySelector('.final-price').textContent.replace('$', ''));
+        case 'eco-score':
+            return parseFloat(productCard.querySelector('.score').textContent.match(/\d+/)[0]);
+        default:
+            return 0;
+    }
+}
+
+// Add smooth scrolling for a better user experience
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+// Add lazy loading for images
+document.addEventListener("DOMContentLoaded", function() {
+    var lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
+
+    if ("IntersectionObserver" in window) {
+        let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    let lazyImage = entry.target;
+                    lazyImage.src = lazyImage.dataset.src;
+                    lazyImage.classList.remove("lazy");
+                    lazyImageObserver.unobserve(lazyImage);
+                }
+            });
+        });
+
+        lazyImages.forEach(function(lazyImage) {
+            lazyImageObserver.observe(lazyImage);
+        });
+    } else {
+        // Fallback for browsers that don't support IntersectionObserver
+        let active = false;
+
+        const lazyLoad = function() {
+            if (active === false) {
+                active = true;
+
+                setTimeout(function() {
+                    lazyImages.forEach(function(lazyImage) {
+                        if ((lazyImage.getBoundingClientRect().top <= window.innerHeight && lazyImage.getBoundingClientRect().bottom >= 0) && getComputedStyle(lazyImage).display !== "none") {
+                            lazyImage.src = lazyImage.dataset.src;
+                            lazyImage.classList.remove("lazy");
+
+                            lazyImages = lazyImages.filter(function(image) {
+                                return image !== lazyImage;
+                            });
+
+                            if (lazyImages.length === 0) {
+                                document.removeEventListener("scroll", lazyLoad);
+                                window.removeEventListener("resize", lazyLoad);
+                                window.removeEventListener("orientationchange", lazyLoad);
+                            }
+                        }
+                    });
+
+                    active = false;
+                }, 200);
+            }
+        };
+
+        document.addEventListener("scroll", lazyLoad);
+        window.addEventListener("resize", lazyLoad);
+        window.addEventListener("orientationchange", lazyLoad);
+    }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,279 @@
+{% extends 'footprint/base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <!-- User Stats Overview -->
+    <div class="stats-overview">
+        <div class="stat-box">
+            <i class="fas fa-leaf"></i>
+            <div class="stat-info">
+                <span class="stat-value">1,250</span>
+                <span class="stat-label">Green Points</span>
+            </div>
+        </div>
+        <div class="stat-box">
+            <i class="fas fa-trophy"></i>
+            <div class="stat-info">
+                <span class="stat-value">8</span>
+                <span class="stat-label">Achievements</span>
+            </div>
+        </div>
+        <div class="stat-box">
+            <i class="fas fa-star"></i>
+            <div class="stat-info">
+                <span class="stat-value">Level 12</span>
+                <span class="stat-label">Current Level</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Grid Layout -->
+    <div class="content-grid">
+        <!-- Energy Usage Box -->
+        <div class="content-box energy-box">
+            <h2><i class="fas fa-bolt"></i> Energy Impact</h2>
+            <div class="energy-meter">
+                <div class="meter-circle">
+                    <svg viewBox="0 0 100 100">
+                        <circle class="meter-bg" cx="50" cy="50" r="45"/>
+                        <circle class="meter-progress" cx="50" cy="50" r="45"/>
+                    </svg>
+                    <div class="meter-content">
+                        <span class="usage-value">-30%</span>
+                        <span class="usage-label">vs Last Month</span>
+                    </div>
+                </div>
+            </div>
+            <div id="energyTrendChart"></div>
+        </div>
+
+        <!-- Achievements Box -->
+        <div class="content-box achievements-box">
+            <h2><i class="fas fa-medal"></i> Recent Achievements</h2>
+            <div class="achievements-grid">
+                <div class="achievement-card gold">
+                    <div class="achievement-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="achievement-info">
+                        <h4>Energy Master</h4>
+                        <p>30% reduction achieved</p>
+                        <span class="points">+100 pts</span>
+                    </div>
+                </div>
+                <div class="achievement-card silver">
+                    <div class="achievement-icon">
+                        <i class="fas fa-solar-panel"></i>
+                    </div>
+                    <div class="achievement-info">
+                        <h4>Solar Pioneer</h4>
+                        <p>Solar panels installed</p>
+                        <span class="points">+150 pts</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Current Challenge Box -->
+        <div class="content-box challenge-box">
+            <h2><i class="fas fa-flag"></i> Monthly Challenge</h2>
+            <div class="challenge-content">
+                <div class="challenge-info">
+                    <h3>January Energy Sprint</h3>
+                    <p>Reduce energy usage by 20% this month</p>
+                    <div class="challenge-progress">
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 65%"></div>
+                        </div>
+                        <span class="progress-text">13% achieved</span>
+                    </div>
+                    <div class="reward-info">
+                        <i class="fas fa-gift"></i>
+                        <span>Reward: 200 points + Gold Badge</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level Progress Box -->
+        <div class="content-box level-box">
+            <h2><i class="fas fa-chart-line"></i> Level Progress</h2>
+            <div class="level-progress">
+                <div class="current-level">
+                    <span class="level">12</span>
+                    <span class="points">1,250 Points</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 75%"></div>
+                </div>
+                <span class="progress-text">750/1000 to Level 13</span>
+            </div>
+            <div class="next-rewards">
+                <h4>Next Level Rewards:</h4>
+                <ul>
+                    <li><i class="fas fa-star"></i> Special Badge</li>
+                    <li><i class="fas fa-gem"></i> 500 Bonus Points</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.stats-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-box {
+    background: rgba(0, 15, 2, 0.85);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border: 1px solid rgba(46, 204, 113, 0.2);
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.content-box {
+    background: rgba(0, 15, 2, 0.85);
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid rgba(46, 204, 113, 0.2);
+}
+
+.meter-circle {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+.meter-circle svg {
+    transform: rotate(-90deg);
+}
+
+circle {
+    fill: none;
+    stroke-width: 8;
+}
+
+.meter-bg {
+    stroke: rgba(46, 204, 113, 0.1);
+}
+
+.meter-progress {
+    stroke: #2ecc71;
+    stroke-dasharray: 283;
+    stroke-dashoffset: 70;
+    transition: stroke-dashoffset 1s ease;
+}
+
+.achievement-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.achievement-card:hover {
+    transform: translateY(-2px);
+}
+
+.gold { border-left: 4px solid #ffd700; }
+.silver { border-left: 4px solid #c0c0c0; }
+
+.progress-bar {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 1rem 0;
+}
+
+.progress {
+    height: 100%;
+    background: #2ecc71;
+    transition: width 0.5s ease;
+}
+
+@media (max-width: 768px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Energy Trend Chart
+    const energyChart = new ApexCharts(document.querySelector("#energyTrendChart"), {
+        series: [{
+            name: 'Energy Usage',
+            data: [320, 280, 250, 240, 220, 210, 200]
+        }],
+        chart: {
+            type: 'area',
+            height: 200,
+            toolbar: {
+                show: false
+            },
+            background: 'transparent'
+        },
+        colors: ['#2ecc71'],
+        fill: {
+            type: 'gradient',
+            gradient: {
+                shadeIntensity: 1,
+                opacityFrom: 0.7,
+                opacityTo: 0.3
+            }
+        },
+        stroke: {
+            curve: 'smooth',
+            width: 2
+        },
+        xaxis: {
+            categories: ['Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            labels: {
+                style: {
+                    colors: '#fff'
+                }
+            }
+        },
+        yaxis: {
+            labels: {
+                style: {
+                    colors: '#fff'
+                }
+            }
+        }
+    });
+    energyChart.render();
+});
+</script>
+{% endblock %} 

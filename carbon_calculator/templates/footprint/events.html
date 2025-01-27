@@ -42,6 +42,7 @@
                                 data-co2="4400">Register Now</button>
                     </div>
                 </div>
+                
 
                 <div class="event-card">
                     <div class="event-date">
@@ -82,27 +83,6 @@
                                 data-event="beach-cleanup" 
                                 data-area="2"
                                 data-co2="300">Register Now</button>
-                    </div>
-                </div>
-
-                <div class="event-card">
-                    <div class="event-date">
-                        <span class="date">05</span>
-                        <span class="month">FEB</span>
-                    </div>
-                    <div class="event-details">
-                        <h3>Solar Panel Workshop</h3>
-                        <p class="event-location">📍 Queens Science Center, NY</p>
-                        <p class="event-time">🕒 1:00 PM - 4:00 PM</p>
-                        <p class="event-description">Learn about solar energy installation and maintenance for residential use.</p>
-                        <div class="event-stats">
-                            <span>⚡ Hands-on training</span>
-                            <span>👥 Spots left: 15</span>
-                        </div>
-                        <button class="btn btn-register" 
-                                data-event="solar-workshop" 
-                                data-energy="1000"
-                                data-co2="500">Register Now</button>
                     </div>
                 </div>
             </div>
@@ -235,7 +215,8 @@
 }
 
 .main-grid {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
 }
@@ -243,19 +224,38 @@
 /* Events Section Styles */
 .events-section {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 1.5rem;
+    flex-wrap: wrap;
+    padding: 2rem;
+    overflow: hidden;
 }
 
 .events-section h2 {
     color: #2ecc71;
+    font-size: 1.8rem;
+    font-weight: bold;
     margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
 }
 
 .events-grid {
     display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+    flex-direction: row; /* Align cards in a single line */
+    gap: 1.5rem; /* Spacing between cards */
+    overflow-x: auto; /* Add horizontal scrolling if the cards overflow */
+    padding-bottom: 1rem;
+    transition: transform 0.3s ease-in-out;
 }
 
 .event-card {
@@ -267,11 +267,46 @@
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     box-shadow: 0 0 15px rgba(46, 204, 113, 0.1);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    width: 300px;
+    flex: 0 0 300px;     width: 300px; 
+    margin: auto;
+}
+
+.carousel-arrow {
+    background-color: rgba(46, 204, 113, 0.8);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    transition: background-color 0.3s;
+}
+
+.carousel-arrow:hover {
+    background-color: rgba(39, 174, 96, 0.9);
+}
+
+.left-arrow {
+    left: 1rem;
+}
+
+.right-arrow {
+    right: 1rem;
 }
 
 .event-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 0 20px rgba(46, 204, 113, 0.2);
+    border-color: rgba(46, 204, 113, 0.4);
+    box-shadow: 
+        0 8px 32px -1px rgba(0, 0, 0, 0.3),
+        0 0 24px rgba(46, 204, 113, 0.2);
 }
 
 .event-date {
@@ -364,7 +399,12 @@
 }
 
 .metric-card {
-    background: rgba(255, 255, 255, 0.05);
+    background: linear-gradient(165deg, 
+        rgba(0, 15, 3, 0.95) 0%,
+        rgba(0, 8, 0, 0.98) 100%
+    );
+    border: 1px solid rgba(46, 204, 113, 0.2);
+    backdrop-filter: blur(10px);
     padding: 1.5rem;
     border-radius: 12px;
     text-align: center;
@@ -375,8 +415,11 @@
 }
 
 .metric-card:hover {
-    transform: translateY(-3px);
-    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-5px);
+    border-color: rgba(46, 204, 113, 0.4);
+    box-shadow: 
+        0 8px 32px -1px rgba(0, 0, 0, 0.3),
+        0 0 24px rgba(46, 204, 113, 0.2);
 }
 
 .metric-card i {
@@ -420,7 +463,12 @@
     display: flex;
     align-items: center;
     padding: 1rem;
-    background: rgba(255, 255, 255, 0.05);
+    background: linear-gradient(165deg, 
+        rgba(0, 15, 3, 0.95) 0%,
+        rgba(0, 8, 0, 0.98) 100%
+    );
+    border: 1px solid rgba(46, 204, 113, 0.2);
+    backdrop-filter: blur(10px);
     border-radius: 8px;
     margin-bottom: 0.5rem;
     transition: all 0.3s ease;
@@ -429,8 +477,11 @@
 }
 
 .contributor:hover {
-    transform: translateX(10px);
-    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-5px);
+    border-color: rgba(46, 204, 113, 0.4);
+    box-shadow: 
+        0 8px 32px -1px rgba(0, 0, 0, 0.3),
+        0 0 24px rgba(46, 204, 113, 0.2);
 }
 
 .rank {
@@ -479,10 +530,24 @@
 }
 
 .milestone {
-    background: rgba(255, 255, 255, 0.05);
+    background: linear-gradient(165deg, 
+        rgba(0, 15, 3, 0.95) 0%,
+        rgba(0, 8, 0, 0.98) 100%
+    );
+    border: 1px solid rgba(46, 204, 113, 0.2);
+    backdrop-filter: blur(10px);
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 0 12px rgba(46, 204, 113, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.milestone:hover {
+    transform: translateY(-5px);
+    border-color: rgba(46, 204, 113, 0.4);
+    box-shadow: 
+        0 8px 32px -1px rgba(0, 0, 0, 0.3),
+        0 0 24px rgba(46, 204, 113, 0.2);
 }
 
 .milestone-progress {
@@ -531,22 +596,18 @@
     background: linear-gradient(90deg, 
         rgba(255,255,255,0) 0%, 
         rgba(255,255,255,0.3) 50%, 
-        rgba(255,255,255,0) 100%);
+        rgba(255,255,255,0) 100%
+    );
     animation: shimmer 2s infinite;
 }
 
 @keyframes shimmer {
-    0% {
-        transform: translateX(-100%);
-    }
-    100% {
-        transform: translateX(400%);
-    }
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(400%); }
 }
 
 /* Button animation */
 .btn-register {
-    transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
     background: #2ecc71;
@@ -555,6 +616,7 @@
     padding: 0.8rem 1.5rem;
     border-radius: 8px;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .btn-register::before {
@@ -611,7 +673,7 @@
     }
 
     .event-card {
-        flex-direction: column;
+        flex-direction: row;
     }
 
     .event-date {
