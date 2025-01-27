@@ -169,5 +169,8 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+<<<<<<< HEAD
 
 config.js
+=======
+>>>>>>> d92f2c0d9ab961188c4dff219e87c972238bace3
