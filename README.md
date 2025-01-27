@@ -34,6 +34,8 @@ Track and reduce your carbon footprint with AI! This project combines machine le
   
 ## Demo video
 
+https://github.com/user-attachments/assets/132cdae1-d1e9-43b8-a418-67b6c5da0a5f
+
 ## ⚙️ Installation
 1. Clone the repo:
    ```bash
